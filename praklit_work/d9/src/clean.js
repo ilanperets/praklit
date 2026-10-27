@@ -15,5 +15,7 @@
   var after=document.getElementById('s7-adm'); after?after.parentNode.insertBefore(sec,after):nav.parentNode.appendChild(sec);
  }
  var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();},120); }).observe(document.documentElement,{childList:true,subtree:true});
- badges(); rm();
+ function fixLessons(){ try{ SUBJECTS.forEach(function(s){ var t=LESSON_TOPICS&&LESSON_TOPICS[s.id]; if(t&&t.length&&s.lessons>t.length)s.lessons=t.length; }); }catch(e){} }
+ var _R=window.render; if(typeof _R==='function'&&!_R.__pkc){ window.render=function(){ fixLessons(); return _R.apply(this,arguments); }; window.render.__pkc=1; }
+ fixLessons(); badges(); rm();
 })();
