@@ -5,3 +5,20 @@
 .s7-edit b{display:block;font-size:15px}.s7-edit span{font-size:12.5px;color:#7a6a58}
 /* מסך קורס אחיד: רשימת השיעורים היא הרשימה היחידה (הבלוק הכפול של חבילות התוכן מוסתר) */
 .pk-ev-road{display:none!important}
+
+.pk-bkwrap{position:relative;display:inline-block}
+.pk-bkchip{display:inline-flex;align-items:center;gap:6px;border:1px solid #C9A24A;background:#fff;color:#5B1226;border-radius:999px;padding:7px 14px;font:700 13px inherit;font-family:inherit;cursor:pointer}
+.pk-bkchip svg{width:14px;height:14px;fill:none;stroke:#7B1230;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pk-bkchip.off{opacity:.55}
+.pk-bkpop{display:none;position:absolute;top:calc(100% + 6px);inset-inline-start:0;z-index:50;min-width:250px;background:#fff;border:1px solid #E3D6B4;border-radius:12px;box-shadow:0 12px 28px -14px #3a1018aa;padding:6px}
+.pk-bkpop.on{display:block}
+.pk-bkpop .r{display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:8px;font-size:13px;font-weight:600;color:#2a1a14}
+.pk-bkpop .r:hover{background:#FBF6EA}.pk-bkpop .r svg{width:16px;height:16px;fill:none;stroke:#7B1230;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pk-bkpop .r span{flex:1;color:#2a1a14;white-space:nowrap}.pk-bkpop i{display:flex;gap:4px;font-style:normal}
+.pk-bkpop button{border:1px solid #C9A24A;background:#fff;color:#5B1226;border-radius:6px;font:700 10.5px/1 inherit;font-family:inherit;padding:4px 7px;cursor:pointer}
+.pk-bkpop button:hover{background:#5B1226;color:#F3E3B5}
+.pk-bkpop em{font-style:normal;font-size:11px;color:#8A6A17;background:#F3E9CB;border-radius:6px;padding:2px 7px}
+.pk-bkpop .th{display:flex;margin:6px 6px 4px;background:#FBF6EA;border:1px solid #E3D6B4;border-radius:999px;padding:2px}
+.pk-bkpop .th button{flex:1;border:0;background:transparent;color:#7a6a58;padding:5px 8px;border-radius:999px}
+.pk-bkpop .th button.on{background:#5B1226;color:#F3E3B5}
+.pk-bkpop .nt{font-size:11.5px;color:#7a6a58;padding:4px 8px 6px}
