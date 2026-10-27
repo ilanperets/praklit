@@ -16,3 +16,13 @@ html.pk-lite #pk9Gate{overscroll-behavior:contain}
 .nav-item.pk-logout svg{stroke:currentColor;fill:none}
 .pk9e-card{border:1px solid rgba(201,162,74,.55);box-shadow:0 30px 60px -28px rgba(0,0,0,.65),0 0 0 4px rgba(201,162,74,.10),0 0 0 1px rgba(255,255,255,.4) inset}
 .pk9e-card input{font-size:16px}
+/* ===== מצב קל למגע: מסך כניסה שטוח וחלק ===== */
+html.pk-lite #pk9Gate .pk9e-stage,html.pk-lite #pk9Gate .pk9e-floats,html.pk-lite #pk9Gate .pk9e-spot,html.pk-lite #pk9Gate .pk9e-dots,html.pk-lite #pk9Gate .pk9e-wm,html.pk-lite #pk9Gate .pk9e-feat,html.pk-lite #pk9Gate .pk9e-stats,html.pk-lite #pk9Gate .pk9e-law,html.pk-lite #pk9Gate .pk9e-caps{display:none!important}
+html.pk-lite #pk9Gate{background:linear-gradient(160deg,#6d0f2a 0%,#3b0716 100%)!important}
+html.pk-lite #pk9Gate .pk9e-in{display:flex!important;flex-direction:column;align-items:center;justify-content:center;min-height:100%;gap:18px;padding:24px 16px;transform:none!important}
+html.pk-lite #pk9Gate .pk9e-side{width:100%;max-width:460px;padding:0!important;background:none!important;transform:none!important}
+html.pk-lite #pk9Gate .pk9e-card{transform:none!important;margin:0 auto;box-shadow:0 10px 30px rgba(0,0,0,.45)!important;border:1px solid rgba(201,162,74,.6)}
+html.pk-lite #pk9Gate .pk9e-brand{padding:0!important;text-align:center}
+html.pk-lite #pk9Gate .pk9e-brand h1{font-size:30px;margin:10px 0 0!important}
+html.pk-lite #pk9Gate .pk9e-brand h1 .gold{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-fill-color:#E8C873!important;color:#E8C873!important}
+html.pk-lite #pk9Gate .pk9e-sys{display:none!important}

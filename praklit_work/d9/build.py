@@ -32,5 +32,5 @@ import base64
 add='<script id="pk9-pdflib">'+rd('vendor/package/dist/pdf-lib.min.js').replace('</script','<\\/script')+'</script>\n<script id="pk9-sample-pdf" type="application/pdf-base64">'+base64.b64encode(open('sample.pdf','rb').read()).decode()+'</script>\n'+add
 s=rd(BASE); i=s.rfind('</body>')
 s=s[:i]+add+s[i:]
-s=s.replace('<title>','<title>דמו · ',1) if not PROD else s
+s=s.replace('<title>','<title>דמו · ',1) if False else s
 open(OUT,'w',encoding='utf-8').write(s); print('built',OUT,len(s))

@@ -108,7 +108,7 @@ function boot(){
     var t0=Date.now(); (function chk(){ var u=null; try{u=currentUser();}catch(e){} if(u){ applySys(); PK9.after(); return; } var ao=document.getElementById('authOv'); if(ao&&ao.style.display!=='none'){ gateShow(); return; } if(Date.now()-t0<8000)setTimeout(chk,150); })();
   } else {
   PK9.setFont(LS.g('pk9_font2','as')); PK9.setFace(LS.g('pk9_face',true));
-  var b=document.createElement('button'); b.id='pk9Fab'; b.innerHTML='<span>✦</span><b>הדמו · מה חדש</b>'; b.onclick=function(){PK9.panel();}; document.body.appendChild(b);
+  var b=document.createElement('button'); b.id='pk9Fab'; b.innerHTML='<span>✦</span><b>מה חדש</b>'; b.onclick=function(){PK9.panel();}; document.body.appendChild(b);
   watch(); setTimeout(gateShow,250); }
   var _r=window.render; if(typeof _r==='function'){ window.render=function(){ var r=_r.apply(this,arguments); PK9.after(); return r; }; }
 }

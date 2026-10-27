@@ -6,7 +6,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>דמו · פרקליט — מערכת הליווי המשפטית</title>
+<title>פרקליט — מערכת הליווי המשפטית</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;700&family=Rubik:wght@400;500;700&family=David+Libre:wght@400;500;700&family=Secular+One&family=Suez+One&family=Alef:wght@400;700&family=Varela+Round&family=Tinos:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -40283,6 +40283,16 @@ html.pk-lite #pk9Gate{overscroll-behavior:contain}
 .nav-item.pk-logout svg{stroke:currentColor;fill:none}
 .pk9e-card{border:1px solid rgba(201,162,74,.55);box-shadow:0 30px 60px -28px rgba(0,0,0,.65),0 0 0 4px rgba(201,162,74,.10),0 0 0 1px rgba(255,255,255,.4) inset}
 .pk9e-card input{font-size:16px}
+/* ===== מצב קל למגע: מסך כניסה שטוח וחלק ===== */
+html.pk-lite #pk9Gate .pk9e-stage,html.pk-lite #pk9Gate .pk9e-floats,html.pk-lite #pk9Gate .pk9e-spot,html.pk-lite #pk9Gate .pk9e-dots,html.pk-lite #pk9Gate .pk9e-wm,html.pk-lite #pk9Gate .pk9e-feat,html.pk-lite #pk9Gate .pk9e-stats,html.pk-lite #pk9Gate .pk9e-law,html.pk-lite #pk9Gate .pk9e-caps{display:none!important}
+html.pk-lite #pk9Gate{background:linear-gradient(160deg,#6d0f2a 0%,#3b0716 100%)!important}
+html.pk-lite #pk9Gate .pk9e-in{display:flex!important;flex-direction:column;align-items:center;justify-content:center;min-height:100%;gap:18px;padding:24px 16px;transform:none!important}
+html.pk-lite #pk9Gate .pk9e-side{width:100%;max-width:460px;padding:0!important;background:none!important;transform:none!important}
+html.pk-lite #pk9Gate .pk9e-card{transform:none!important;margin:0 auto;box-shadow:0 10px 30px rgba(0,0,0,.45)!important;border:1px solid rgba(201,162,74,.6)}
+html.pk-lite #pk9Gate .pk9e-brand{padding:0!important;text-align:center}
+html.pk-lite #pk9Gate .pk9e-brand h1{font-size:30px;margin:10px 0 0!important}
+html.pk-lite #pk9Gate .pk9e-brand h1 .gold{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-fill-color:#E8C873!important;color:#E8C873!important}
+html.pk-lite #pk9Gate .pk9e-sys{display:none!important}
 
 </style>
 <script id="pk9-core">
@@ -40396,7 +40406,7 @@ function boot(){
     var t0=Date.now(); (function chk(){ var u=null; try{u=currentUser();}catch(e){} if(u){ applySys(); PK9.after(); return; } var ao=document.getElementById('authOv'); if(ao&&ao.style.display!=='none'){ gateShow(); return; } if(Date.now()-t0<8000)setTimeout(chk,150); })();
   } else {
   PK9.setFont(LS.g('pk9_font2','as')); PK9.setFace(LS.g('pk9_face',true));
-  var b=document.createElement('button'); b.id='pk9Fab'; b.innerHTML='<span>✦</span><b>הדמו · מה חדש</b>'; b.onclick=function(){PK9.panel();}; document.body.appendChild(b);
+  var b=document.createElement('button'); b.id='pk9Fab'; b.innerHTML='<span>✦</span><b>מה חדש</b>'; b.onclick=function(){PK9.panel();}; document.body.appendChild(b);
   watch(); setTimeout(gateShow,250); }
   var _r=window.render; if(typeof _r==='function'){ window.render=function(){ var r=_r.apply(this,arguments); PK9.after(); return r; }; }
 }
