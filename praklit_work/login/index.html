@@ -65,7 +65,7 @@ body{display:block;padding:0}
 .side{display:flex;justify-content:center}
 .card{margin:0}
 @media (max-width:900px){.page{grid-template-columns:1fr;gap:22px;padding:28px 16px}.brand{text-align:center}.logo{justify-content:center;margin-bottom:22px}.brand h1{font-size:40px;margin-bottom:18px}.fts{display:none}.sysrow{max-width:440px;margin:0 auto 6px;text-align:right}.sysrow em{display:none}.sysrow button{padding:10px}.side{order:2}}
-</style>
+.adm{width:100%;margin-top:12px;border:1px dashed #b8913c;background:#fff8e6;color:#7b1230;border-radius:12px;padding:11px;font:600 15px var(--sans)}</style>
 </head>
 <body>
 <main class="page"><section class="brand">
@@ -90,6 +90,7 @@ body{display:block;padding:0}
   <label for="p">סיסמה</label><input type="password" id="p" autocomplete="current-password">
   <div class="row" id="rw"><label style="margin:0;color:var(--mut);font-weight:400"><input type="checkbox" checked>לזכור אותי</label><a href="#" id="fg">שכחתי סיסמה</a></div>
   <button class="go" id="go" type="submit">כניסה לפרקליט לימודים</button>
+  <button type="button" class="adm" id="adm">🔑 כניסת מנהל · פיתוח בלבד</button>
   <div class="foot">הנתונים שלך פרטיים ונשמרים במכשיר · <a href="#">תקנון ופרטיות</a></div>
 </form></section></main>
 <script>
@@ -120,6 +121,7 @@ $('tl').onclick=function(){tab='login';err();paint();};
 $('tr').onclick=function(){tab='reg';err();paint();};
 $('sys').onclick=function(e){var b=e.target.closest('button');if(!b)return;sys=b.getAttribute('data-s');per=sys==='firm'?'lawyer':'student';LSs('pk9_sys',sys);paint();};
 $('per').onclick=function(e){var b=e.target.closest('button');if(!b||sys==='firm')return;per=b.getAttribute('data-p');paint();};
+$('adm').onclick=function(){var a=load(),u=null;for(var i=0;i<a.users.length;i++){if(a.users[i].role==='admin'){u=a.users[i];break;}}if(!u)return;a.session=u.id;if(!save(a)){err('לא ניתן לשמור במכשיר');return;}LSs('pk9_sys',sys);location.replace('app.html');};
 $('fg').onclick=function(e){e.preventDefault();err('לאיפוס סיסמה פונים למנהל המערכת.');};
 sys=LSg('pk9_sys','study')==='firm'?'firm':'study'; per=sys==='firm'?'lawyer':'student'; paint();
 $('f').onsubmit=function(ev){
