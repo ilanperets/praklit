@@ -1,0 +1,18 @@
+/* ===== מסך כניסה מהיר + כפתור התנתקות (27.10.2026) =====
+   מסיר רק אנימציות כבדות במסך הכניסה. המראה נשאר. הכול כתוספת, לא נוגעים בשכבת הכניסה המקורית. */
+.pk9e-brand h1 .gold{animation:none!important}
+.pk9e-glow{animation:none!important;opacity:.9}
+.pk9e-fl{-webkit-backdrop-filter:none!important;backdrop-filter:none!important;background:rgba(255,248,236,.13)!important}
+.pk9e-rot .w,.pk9e-rot .w.out{filter:none!important}
+.pk9e-rays{animation:none!important}
+.pk9e-seal .spin,.pk9e-seal .spin2{animation:none!important}
+#pk9eDust{display:none!important}
+/* אייפד ונייד: בלי קרניים, ובלי שום אנימציה, טשטוש או מעבר במסך הכניסה (הטבעת והזוהר נשארים כתמונה קבועה) */
+html.pk-lite #pk9Gate .pk9e-rays,html.pk-lite #pk9Gate #pk9eDust{display:none!important}
+html.pk-lite #pk9Gate,html.pk-lite #pk9Gate *{animation:none!important;transition:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;filter:none!important;will-change:auto!important}
+html.pk-lite #pk9Gate{overscroll-behavior:contain}
+/* כפתור התנתקות גלוי בתפריט הצד */
+.nav-item.pk-logout{margin-top:8px;color:#9b3a2c}
+.nav-item.pk-logout svg{stroke:currentColor;fill:none}
+.pk9e-card{border:1px solid rgba(201,162,74,.55);box-shadow:0 30px 60px -28px rgba(0,0,0,.65),0 0 0 4px rgba(201,162,74,.10),0 0 0 1px rgba(255,255,255,.4) inset}
+.pk9e-card input{font-size:16px}

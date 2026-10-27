@@ -22,9 +22,9 @@ body.pk9f-rb{--pk-disp:'PK9 Rubik','Rubik',sans-serif!important;--serif:'PK9 Rub
 body.pk9f-hb{--pk-disp:'PK9 Heebo','Heebo',sans-serif!important;--serif:'PK9 Heebo','Heebo',sans-serif!important;--pk-ui:'PK9 HeeboU','Heebo',sans-serif!important;--sans:'PK9 HeeboU','Heebo',sans-serif!important}
 '''
 def rd(p): return open(p,encoding='utf-8').read()
-CSS=['core.css','entry.css','face.css','word.css','pdf.css','brain.css','fun.css','pack.css']
+CSS=['core.css','entry.css','face.css','word.css','pdf.css','brain.css','fun.css','pack.css','login_lite.css']
 import glob
-JS=['core.js','entry.js','word.js','pdf.js','brain.js','fun.js']+sorted(os.path.basename(x) for x in glob.glob('src/pack_*.js'))
+JS=['core.js','entry.js','word.js','pdf.js','brain.js','fun.js','login_lite.js','logout.js']+sorted(os.path.basename(x) for x in glob.glob('src/pack_*.js'))
 add=('<script>window.PK9_PROD=true;</script>\n' if PROD else '')+'<style id="pk9-css">\n'+FONTCSS+'\n'+'\n'.join(rd('src/'+f) for f in CSS if os.path.exists('src/'+f))+'\n</style>\n'
 for f in JS:
     if os.path.exists('src/'+f): add+='<script id="pk9-'+f.replace('.js','')+'">\n'+rd('src/'+f)+'\n</script>\n'
