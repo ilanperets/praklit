@@ -1,0 +1,45 @@
+W banking_1
+W banking_2
+W banking_3
+W banking_4
+W banking_5
+W tax_1 (missing l2,l3)
+W tax_2 (missing l6)
+W tax_3 (missing l8,l9)
+W tax_4 (missing l12)
+W tax_5 (missing l14,l15)
+W realestate_3 (missing l9 only)
+R civproc l11-l15
+R corp l1-l15
+R realestate l1-l15
+R tax all
+W ip_1
+W ip_2
+W ip_3
+W ip_4
+W ip_5
+W intl_1
+W intl_2
+W intl_3
+W intl_4
+W intl_5
+W inherit_1
+W inherit_2
+W inherit_3
+W inherit_4
+W inherit_5
+W exec_1
+W exec_2
+W exec_3
+W exec_4
+W exec_5
+W commerce_1
+W commerce_2
+W commerce_3
+W commerce_4
+W commerce_5
+W ethics_1
+W ethics_2
+W ethics_3
+W ethics_4
+W ethics_5

@@ -1,0 +1,17 @@
+- evidence 6–10: 5 fixes (l6 4481/14 attribution, l7 s.413 wording, l9 Newpan, l9 oligarch, l10 Kalkuda).
+- intro 6–10: 5 fixes (order nisi date 2.12.2025, Ressler, Deri split, deadlock mechanism, investment managers); 2025–26 events confirmed (Basic Law Torah study 13.7.2026; AG law 15.7.2026; amendment 4).
+- intro 1–5: 5 fixes (תיקון 3 לחוק החוזים 5.1.2026 confirmed; ברנבלט 1964; 6198/23 wording).
+- evidence 1–5: ~15 fixes (מנורה נ׳ סדובניק, סילוסטר, כרמי, ראשית הודאה/דבר מה נוסף, ועדת לנדוי, חייבטוב, קוזלי removed).
+- evidence 11–15: fixes (ס׳ 83–84 חסד״פ, אוריך דנ״פ, חייבטוב, תיקון 3 ס׳ 25, שרון נ׳ לוי added, בר נוער).
+- intro 11–15: 6 fixes (חשבים, דמי חבר תיקון 45, רקע התמחות, אזכור חקיקה). intro fully reviewed.
+- property 1–5: many fixes (כנען נ׳ אלטיף, בישור 713, נעמה נ׳ טורקיה, מלונות צרפת respondent, גן בועז, רוקר).
+- property 6–10: l6 +אסטרחאן 700/88, +אורן נ׳ כהן 1769/04; כנען story fixed; אהרונוב; צימבלר.
+- property 11–15: 8 fixes (אהרונוב, וידר, פל נ׳ ליבוביץ, לנדוי, אחי תקומה). property fully reviewed.
+- tort 11–15: fixes (שאש נ׳ דלה, מירו, פלקסר, רביד; +3751/17 היוון 3%, +אבו חנא, +9706/08).
+- tort 1–5: 33 edits (מלול outcome, 7375/02 conditions, ולעס, 4486/11 parties, אלסוחה softening 754/05, etc.).
+- tort 6–10: fixes (4756/16 instead of 6572/14, צוקרמן 361/59, דפרון, קראוס/דיין, Phillips, בריגה, כרמלי). tort fully reviewed.
+- crimproc 1–5: 8 fixes (יהב 2354/97, 15-yr limitation, ס׳ 29 שבת, כליפה date, אופק facts removed, נתניהו example).
+- crimproc 6–10: 12 fixes (גנור outcome, Sharon 5675/04, שוורץ, פרץ page, רומנו בר״ע, אגוזי). יהב = 2534/97 (unified).
+- civproc 6–10: removed suspicious case אמיתי נ׳ ביטון (machine-generated source); 6128/20 corrected; l10 jurisdiction argument; מהו״ת 40,000 confirmed.
+- crimproc 11–15: ~20 fixes (ס׳ 50ב, 9א האזנת סתר, 22(ב) מעצרים, spyware Q, סילבסטר, זקין, רותם). crimproc fully reviewed.
+- civproc 1–5: 18 fixes (זילברברג facts, 8945/09 removed, יובל, Fast Corporate, ת. 374 wording).
