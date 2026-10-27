@@ -8,21 +8,21 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;min-height:100%;background:#4a0b1e}
 body{font-family:-apple-system,"Segoe UI",Assistant,Arial,sans-serif;background:linear-gradient(160deg,#6d0f2a 0%,#3b0716 100%);background-attachment:fixed;color:#2a1c16;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px 16px}
-.wrap{width:100%;max-width:440px}
-.brand{text-align:center;color:#fff;margin-bottom:18px}
-.seal{width:64px;height:64px;border-radius:50%;background:#d9b865;color:#4a0b1e;font:700 34px Georgia,serif;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;border:3px solid #f1d78e}
-.brand h1{margin:0;font-size:32px;font-weight:700}
+.wrap{width:100%;max-width:470px}.chips{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:14px}.chips span{color:#f3e2b3;border:1px solid rgba(232,200,115,.4);border-radius:99px;padding:5px 12px;font-size:13.5px}
+.brand{text-align:center;color:#fff;margin-bottom:20px}
+.seal{width:72px;height:72px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f6de9b,#c9a24a);color:#4a0b1e;font:700 38px Georgia,serif;box-shadow:0 0 0 6px rgba(232,200,115,.18),0 0 0 7px rgba(232,200,115,.5);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;border:3px solid #f1d78e}
+.brand h1{margin:14px 0 0;font-size:38px;font-weight:700;letter-spacing:.5px}.brand .k{margin:12px 0 0;font-size:20px;color:#fff;font-weight:600}.brand .k b{color:#e8c873}
 .brand p{margin:6px 0 0;color:#e8c873;font-size:16px}
-.card{background:#fbf8f2;border:1px solid rgba(201,162,74,.6);border-radius:22px;padding:26px 22px 20px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.card{background:#fbf8f2;border:1px solid rgba(201,162,74,.6);border-radius:22px;padding:28px 24px 22px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
 h2{margin:0 0 4px;font-size:25px}
 .sub{margin:0 0 16px;color:#7a6a5e;font-size:15px}
 .tabs{display:flex;background:#eee6d6;border-radius:12px;padding:4px;margin-bottom:16px}
-.tabs button{flex:1;border:0;background:none;padding:11px;border-radius:9px;font:600 16px inherit;font-family:inherit;color:#7a6a5e}
-.tabs button.on{background:#fff;color:#2a1c16}
+.tabs button{flex:1;border:0;background:none;padding:11px;border-radius:9px;font-family:inherit;font-weight:600;font-size:17px;color:#7a6a5e}
+.tabs button.on{background:#fff;color:#7b1230;box-shadow:0 1px 4px rgba(0,0,0,.12)}
 label{display:block;font-size:13px;font-weight:600;color:#7b1230;margin:0 4px 4px}
-input{width:100%;border:1px solid #d8c9a8;background:#fffdf8;border-radius:12px;padding:14px;font-size:16px;font-family:inherit;margin-bottom:12px;color:#2a1c16;outline:none}
+input{-webkit-appearance:none;appearance:none;width:100%;border:1px solid #d8c9a8;background:#fffdf8;border-radius:12px;padding:14px;font-size:16px;font-family:inherit;margin-bottom:12px;color:#2a1c16;outline:none}
 input:focus{border-color:#b8913c;box-shadow:0 0 0 3px rgba(201,162,74,.25)}
-.go{width:100%;border:0;border-radius:12px;padding:15px;background:#7b1230;color:#fff;font:700 17px inherit;font-family:inherit;margin-top:4px}
+.go{width:100%;border:0;border-radius:12px;padding:15px;background:#7b1230;color:#fff;font-family:inherit;font-weight:700;font-size:18px;margin-top:6px}
 .go:active{background:#5e0d24}
 .err{color:#b3261e;font-size:14px;min-height:20px;margin:0 2px 6px}
 .foot{text-align:center;color:#7a6a5e;font-size:12.5px;margin-top:14px}
@@ -31,7 +31,7 @@ input:focus{border-color:#b8913c;box-shadow:0 0 0 3px rgba(201,162,74,.25)}
 </head>
 <body>
 <div class="wrap">
-  <div class="brand"><div class="seal">§</div><h1>פרקליט</h1><p>מהסטודנט ועד הפרקליט</p></div>
+  <div class="brand"><div class="seal">§</div><h1>פרקליט</h1><p>מהסטודנט ועד הפרקליט</p><div class="k">המקום שבו <b>לומדים משפטים</b></div><div class="chips"><span>23 קורסים מלאים</span><span>+1,900 פסקי דין</span><span>+4,000 שאלות</span></div></div>
   <form class="card" id="f" autocomplete="on" novalidate>
     <h2 id="h">ברוכים השבים</h2>
     <p class="sub" id="s">נכנסים וממשיכים בדיוק מאיפה שעצרת</p>
