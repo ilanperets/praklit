@@ -13,3 +13,5 @@
     if(++tries>120) clearInterval(iv);
   },500);
 })();
+/* אחרי התנתקות חוזרים למסך הכניסה הקל */
+(function(){ try{ var o=window.authLogout; if(typeof o==='function'&&!o.__pk){ window.authLogout=function(){ var r=o.apply(this,arguments); try{ location.replace('index.html'); }catch(e){} return r; }; window.authLogout.__pk=1; } }catch(e){} })();

@@ -83,5 +83,5 @@ function dust(g){ var cv=g.querySelector('#pk9eDust'); if(!cv||innerWidth<900)re
   for(var i=0;i<70;i++)P.push({x:Math.random()*innerWidth,y:Math.random()*innerHeight,r:Math.random()*1.6+.4,v:Math.random()*.25+.06,a:Math.random()*Math.PI*2,o:Math.random()*.5+.15});
   (function loop(){ if(!document.getElementById('pk9eDust'))return; ctx.clearRect(0,0,W,H); P.forEach(function(p){ p.y-=p.v; p.a+=.01; p.x+=Math.sin(p.a)*.2; if(p.y<-5){p.y=H+5;p.x=Math.random()*W;} ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.283); ctx.fillStyle='rgba(233,200,120,'+(p.o*(.6+.4*Math.sin(p.a*2)))+')'; ctx.fill(); }); dustRAF=requestAnimationFrame(loop); })(); }
 /* החלפת מסך הכניסה הישן */
-try{ var _sa=window.showAuth; window.showAuth=function(){ X.show(); }; }catch(e){}
+try{ var _sa=window.showAuth; window.showAuth=function(){ if(window.PK9&&PK9.gate)PK9.gate(); else X.show(); }; }catch(e){}
 })();

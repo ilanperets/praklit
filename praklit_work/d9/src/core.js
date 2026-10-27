@@ -55,7 +55,7 @@ PK9.enter=async function(sys,per){
   gateHide(); applySys(); PK9.after(); };
 
 /* ---------- מסך הכניסה (entry.js) ---------- */
-function gateShow(){ if(window.PK9E)PK9E.show(); }
+function gateShow(){ if(/[?&]gate=1/.test(location.search)){ if(window.PK9E)PK9E.show(); } else { try{ location.replace('index.html'); }catch(e){} } }
 function gateHide(){ if(window.PK9E)PK9E.hide(); }
 PK9.gate=gateShow; PK9.gateLogin=gateShow;
 /* ---------- מתמחה: מבחן הלשכה בלוח הבקרה ---------- */
@@ -109,7 +109,7 @@ function boot(){
   } else {
   PK9.setFont(LS.g('pk9_font2','as')); PK9.setFace(LS.g('pk9_face',true));
   var b=document.createElement('button'); b.id='pk9Fab'; b.innerHTML='<span>✦</span><b>מה חדש</b>'; b.onclick=function(){PK9.panel();}; document.body.appendChild(b);
-  watch(); setTimeout(gateShow,250); }
+  watch(); setTimeout(function(){ try{ var _a=JSON.parse(localStorage.getItem('pkst_praklit_auth')||'null'); if(!(_a&&_a.session))gateShow(); }catch(e){ gateShow(); } },250); }
   var _r=window.render; if(typeof _r==='function'){ window.render=function(){ var r=_r.apply(this,arguments); PK9.after(); return r; }; }
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot); else boot();

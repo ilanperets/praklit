@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>פרקליט — כניסה</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;background:#4a0b1e}
+body{font-family:-apple-system,"Segoe UI",Assistant,Arial,sans-serif;background:linear-gradient(160deg,#6d0f2a 0%,#3b0716 100%);background-attachment:fixed;color:#2a1c16;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px 16px}
+.wrap{width:100%;max-width:440px}
+.brand{text-align:center;color:#fff;margin-bottom:18px}
+.seal{width:64px;height:64px;border-radius:50%;background:#d9b865;color:#4a0b1e;font:700 34px Georgia,serif;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;border:3px solid #f1d78e}
+.brand h1{margin:0;font-size:32px;font-weight:700}
+.brand p{margin:6px 0 0;color:#e8c873;font-size:16px}
+.card{background:#fbf8f2;border:1px solid rgba(201,162,74,.6);border-radius:22px;padding:26px 22px 20px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+h2{margin:0 0 4px;font-size:25px}
+.sub{margin:0 0 16px;color:#7a6a5e;font-size:15px}
+.tabs{display:flex;background:#eee6d6;border-radius:12px;padding:4px;margin-bottom:16px}
+.tabs button{flex:1;border:0;background:none;padding:11px;border-radius:9px;font:600 16px inherit;font-family:inherit;color:#7a6a5e}
+.tabs button.on{background:#fff;color:#2a1c16}
+label{display:block;font-size:13px;font-weight:600;color:#7b1230;margin:0 4px 4px}
+input{width:100%;border:1px solid #d8c9a8;background:#fffdf8;border-radius:12px;padding:14px;font-size:16px;font-family:inherit;margin-bottom:12px;color:#2a1c16;outline:none}
+input:focus{border-color:#b8913c;box-shadow:0 0 0 3px rgba(201,162,74,.25)}
+.go{width:100%;border:0;border-radius:12px;padding:15px;background:#7b1230;color:#fff;font:700 17px inherit;font-family:inherit;margin-top:4px}
+.go:active{background:#5e0d24}
+.err{color:#b3261e;font-size:14px;min-height:20px;margin:0 2px 6px}
+.foot{text-align:center;color:#7a6a5e;font-size:12.5px;margin-top:14px}
+.hide{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand"><div class="seal">§</div><h1>פרקליט</h1><p>מהסטודנט ועד הפרקליט</p></div>
+  <form class="card" id="f" autocomplete="on" novalidate>
+    <h2 id="h">ברוכים השבים</h2>
+    <p class="sub" id="s">נכנסים וממשיכים בדיוק מאיפה שעצרת</p>
+    <div class="tabs"><button type="button" id="tl" class="on">כניסה</button><button type="button" id="tr">הרשמה</button></div>
+    <div id="nmw" class="hide"><label for="nm">שם מלא</label><input id="nm" autocomplete="name"></div>
+    <label for="u">שם משתמש</label><input id="u" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false">
+    <label for="p">סיסמה</label><input id="p" type="password" autocomplete="current-password">
+    <div class="err" id="e" role="alert"></div>
+    <button class="go" id="go" type="submit">כניסה לפרקליט</button>
+    <div class="foot">הנתונים שלך נשמרים במכשיר</div>
+  </form>
+</div>
+<script>
+(function(){
+  var K='pkst_praklit_auth', mode='login';
+  function hashPass(pw){var h=5381,s='prk_salt_'+pw;for(var i=0;i<s.length;i++){h=((h<<5)+h+s.charCodeAt(i))>>>0;}return h.toString(16);}
+  function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+  function load(){var a=null;try{a=JSON.parse(localStorage.getItem(K)||'null');}catch(e){} if(!a)a={users:[],session:null}; if(!a.users)a.users=[]; if(!a.tickets)a.tickets=[]; if(!a.users.some(function(u){return u.role==='admin';})){a.users.push({id:uid(),user:'admin',name:'מנהל ראשי',pass:'c9dbc096',role:'admin',created:Date.now(),sub:{status:'active',plan:'מנהל',paidUntil:0}});} return a;}
+  function save(a){try{localStorage.setItem(K,JSON.stringify(a));return true;}catch(e){return false;}}
+  function byName(a,n){n=String(n||'').trim().toLowerCase();for(var i=0;i<a.users.length;i++){if(String(a.users[i].user).toLowerCase()===n)return a.users[i];}return null;}
+  var $=function(i){return document.getElementById(i)};
+  function setMode(m){mode=m;var r=m==='reg';$('tl').className=r?'':'on';$('tr').className=r?'on':'';$('nmw').className=r?'':'hide';$('h').textContent=r?'פותחים חשבון':'ברוכים השבים';$('s').textContent=r?'שם משתמש וסיסמה וממשיכים ללמוד':'נכנסים וממשיכים בדיוק מאיפה שעצרת';$('go').textContent=r?'פתיחת חשבון':'כניסה לפרקליט';$('p').setAttribute('autocomplete',r?'new-password':'current-password');$('e').textContent='';}
+  $('tl').onclick=function(){setMode('login')};$('tr').onclick=function(){setMode('reg')};
+  // מי שכבר מחובר ממשיך ישר לאפליקציה
+  try{var a0=load();if(a0.session&&a0.users.some(function(u){return u.id===a0.session;})&&location.search.indexOf('stay=1')<0){location.replace('app.html');return;}}catch(e){}
+  $('f').onsubmit=function(ev){
+    ev.preventDefault();var a=load(),user=$('u').value.trim(),pw=$('p').value,err=null;
+    if(mode==='login'){
+      var u=byName(a,user);
+      if(!u)err='שם המשתמש אינו קיים';else if(u.pass!==hashPass(pw))err='סיסמה שגויה';else if(u.role!=='admin'&&u.sub&&u.sub.status==='suspended')err='החשבון מושעה. נא לפנות למנהל המערכת.';
+      else a.session=u.id;
+    }else{
+      if(user.length<3)err='שם משתמש קצר מדי (לפחות 3 תווים)';else if(pw.length<4)err='סיסמה קצרה מדי (לפחות 4 תווים)';else if(byName(a,user))err='שם המשתמש כבר תפוס';
+      else{var n={id:uid(),user:user,name:$('nm').value.trim()||user,pass:hashPass(pw),role:'student',persona:'student',created:Date.now(),sub:{status:'trial',plan:'חודשי',paidUntil:Date.now()+14*864e5}};a.users.push(n);a.session=n.id;}
+    }
+    if(err){$('e').textContent=err;return;}
+    if(!save(a)){$('e').textContent='לא ניתן לשמור במכשיר (מצב גלישה פרטי חוסם שמירה?)';return;}
+    $('go').textContent='נכנסים…';location.replace('app.html');
+  };
+})();
+</script>
+</body>
+</html>

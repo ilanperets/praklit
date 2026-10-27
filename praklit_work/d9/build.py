@@ -33,4 +33,5 @@ add='<script id="pk9-pdflib">'+rd('vendor/package/dist/pdf-lib.min.js').replace(
 s=rd(BASE); i=s.rfind('</body>')
 s=s[:i]+add+s[i:]
 s=s.replace('<title>','<title>דמו · ',1) if False else s
+s=s.replace('<head>','<head><script id="pk-guard">try{var _a=JSON.parse(localStorage.getItem("pkst_praklit_auth")||"null");if(!(_a&&_a.session)&&location.search.indexOf("gate=1")<0)location.replace("index.html");}catch(e){}</script>',1)
 open(OUT,'w',encoding='utf-8').write(s); print('built',OUT,len(s))
