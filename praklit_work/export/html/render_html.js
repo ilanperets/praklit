@@ -21,7 +21,7 @@ const CSS=`
 *{box-sizing:border-box}
 body{margin:0;font-family:A,sans-serif;color:#1F2430;direction:rtl}
 p{font-size:10pt;line-height:1.62;margin:0 0 2.6mm;text-align:right}
-b{font-weight:700;color:#4A1020}
+b{font-weight:700;color:#4A1020;background:linear-gradient(transparent 58%,#FBEBA8 58%,#FBEBA8 92%,transparent 92%);padding:0 .6mm;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .ch{background:linear-gradient(100deg,#5B1226,#7B1230);border:.8pt solid #B8913C;outline:1.2pt solid #5B1226;outline-offset:-3.2mm;border-radius:1.2mm;padding:5.2mm 7mm;margin:0 0 4mm;display:flex;align-items:center;gap:5mm;color:#fff;break-inside:avoid;break-after:avoid}
 .ch .no{font-weight:700;font-size:10pt;letter-spacing:.1em;color:#E8D5A3;border:1pt solid #B8913C;border-radius:50%;width:11mm;height:11mm;display:flex;align-items:center;justify-content:center;flex:none}
 .ch .tt{font-weight:800;font-size:19pt;line-height:1.1}.ch .sub{font-size:9pt;color:#E8D5A3;margin-top:1.4mm}
@@ -32,16 +32,16 @@ ul,ol{margin:0 0 2.6mm;padding:0 5mm 0 0;font-size:10pt;line-height:1.58}li{marg
 .bx{border-radius:1.2mm;padding:2.4mm 4.5mm .8mm;margin:0 0 3mm;border:.7pt solid;break-inside:avoid}
 .bx p{font-size:9.6pt;margin-bottom:1.8mm;line-height:1.58}.bx ul,.bx ol{font-size:9.6pt}
 .lbl{font-size:8pt;font-weight:700;margin-bottom:.6mm}
-.law{background:#FBF6EA;border-color:#E6D9B8;border-right:2.6pt solid #B8913C}.law .lbl{color:#8A6A1F}.law p{color:#3A3220}.law b{color:#6B4F10}
-.key{background:#FBF3F4;border-color:#E6C9CE;border-right:2.6pt solid #7B1230}.key .lbl{color:#7B1230}
-.tip{background:#FFF8E4;border-color:#EBDDB0;border-right:2.6pt solid #B8913C}.tip .lbl{color:#8A6A1F}.tip b{color:#6B4F10}
-.warn{background:#FDF0F1;border-color:#F0CDD2;border-right:2.6pt solid #B0283F}.warn .lbl{color:#B0283F}.warn b{color:#B0283F}
+.law{background:#F7F2FA;border-color:#DDD0E6;border-right:2.6pt solid #6B4A7E}.law .lbl{color:#6B4A7E}.law p{color:#2E2338}.law b{color:#4B2F5C;background:linear-gradient(transparent 58%,#E5D6F0 58%,#E5D6F0 92%,transparent 92%)}
+.key{background:#EFF3F9;border-color:#CCD7EA;border-right:2.6pt solid #2F4C80}.key .lbl{color:#2F4C80}.key b{color:#1F3560;background:linear-gradient(transparent 58%,#D3DEF2 58%,#D3DEF2 92%,transparent 92%)}
+.tip{background:#FFF8E4;border-color:#EBDDB0;border-right:2.6pt solid #B8913C}.tip .lbl{color:#8A6A1F}.tip b{color:#6B4F10;background:linear-gradient(transparent 58%,#F4E0A0 58%,#F4E0A0 92%,transparent 92%)}
+.warn{background:#FDF0F1;border-color:#F0CDD2;border-right:2.6pt solid #B0283F}.warn .lbl{color:#B0283F}.warn b{color:#9A1F34;background:linear-gradient(transparent 58%,#F6CBD1 58%,#F6CBD1 92%,transparent 92%)}
 table{width:100%;border-collapse:collapse;margin:1mm 0 3.5mm;font-size:9pt;border:.7pt solid #E6C9CE}
 tr{break-inside:avoid}
 th{background:#5B1226;color:#fff;font-weight:600;text-align:right;padding:1.8mm 3mm;border-bottom:1.6pt solid #B8913C}
 td{padding:1.8mm 3mm;border-bottom:.6pt solid #EBDADD;vertical-align:top;line-height:1.5}
 tr:nth-child(even) td{background:#FDFAFA}
-td:first-child{font-weight:700;color:#5B1226;background:#FBF3F4!important}
+td:first-child{font-weight:700;color:#5B1226;background:#FBF3F4!important}td b,th b,h2 b,h3 b,.ch b{background:none;padding:0}
 .case{margin:0 0 3mm;border:.7pt solid #E6D9B8;border-radius:1.2mm;overflow:hidden;break-inside:avoid}
 .case .hd{background:#5B1226;border-bottom:1.6pt solid #B8913C;color:#fff;padding:1.8mm 4mm;font-weight:700;font-size:10pt}.case .hd small{display:block;font-weight:400;color:#E8D5A3;font-size:8pt}
 .case .rw{display:flex;border-top:.6pt solid #EBDDB0}.case .rw>div:first-child{width:18mm;flex:none;background:#FBF6EA;color:#8A6A1F;font-weight:700;font-size:8.5pt;padding:2mm 3mm}.case .rw>div:last-child{padding:2mm 3.5mm;font-size:9.4pt;line-height:1.55}
@@ -89,7 +89,7 @@ function cover(tag,title2,desc,meta){ return `<style>@page{size:A4;margin:0}</st
 <div style="font-weight:800;font-size:46pt;line-height:1.05">${esc(COURSE)}</div><div style="font-weight:700;font-size:21pt;color:#E8D5A3;margin-top:4mm">${esc(title2)}</div>
 <div style="font-size:12pt;line-height:1.7;color:#F3E6C8;margin-top:12mm;max-width:130mm">${esc(desc)}</div><div style="font-size:11pt;color:#E8D5A3;margin-top:8mm">${esc(meta)}</div>
 <div style="margin-top:auto;border-top:1pt solid #B8913C;padding-top:5mm;display:flex;justify-content:space-between;align-items:flex-end"><div><div style="font-size:9pt;color:#E8D5A3">הוכן ונערך ע״י</div><div style="font-size:19pt;font-weight:800">${esc(CREDIT.replace('הוכן ע״י ',''))}</div></div><div style="font-size:30pt;color:#B8913C">§</div></div></div></div>`; }
-function tocPage(sub){ return `<div class=title2>תוכן עניינים</div><div class=title3>${sub}</div><div class=toc>${L.map(l=>`<div class=r><span>${l.n}</span>${esc(l.title)}</div>`).join('')}</div>`; }
+function tocPage(sub){ return `<div class=title2>תוכן עניינים</div><div class=title3>${sub}</div><div class=toc>${L.map(l=>`<div class=r><span>${l.n}</span>${esc(l.title)}</div>`).join('')}</div><div style="display:flex;gap:3mm;margin-top:8mm">${['law','key','warn','tip'].map(k=>`<div class="bx ${k}" style="flex:1;padding:1.6mm 3mm;margin:0"><div class=lbl style="margin:0;text-align:center">${BL[k]}</div></div>`).join('')}</div>`; }
 (async()=>{ fs.mkdirSync(OUT,{recursive:true}); const b=await chromium.launch(); const pg=await b.newPage();
   const render=async(file,body,cls,label,coverHtml)=>{ const tmp=OUT+'/_'+file;
     const go=async(h,pdf,opt)=>{ fs.writeFileSync(tmp+'.html',h); await pg.goto('file://'+path.resolve(tmp+'.html')); await pg.evaluate(()=>document.fonts.ready); await pg.pdf({path:pdf,format:'A4',printBackground:true,...opt}); };
