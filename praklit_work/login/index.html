@@ -184,6 +184,14 @@ body{font-family:'Assistant','Heebo',system-ui,sans-serif}
 .pk9e-glow{opacity:.9}
 .pk9e-card input{font-size:16px}
 
+
+/* ===== ניקיון מלא ל-Safari: רקע שטוח, בלי שכבות כבדות ===== */
+#pk9Gate{background:linear-gradient(160deg,#7E2A38 0%,#4a1520 55%,#2E0D14 100%)!important}
+#pk9Gate *,#pk9Gate *::before,#pk9Gate *::after{-webkit-mask-image:none!important;mask-image:none!important;filter:none!important;text-shadow:none!important}
+.pk9e-card{box-shadow:0 8px 24px rgba(0,0,0,.4)!important;background:#FBF8F2!important;border:1px solid rgba(217,184,101,.55)}
+.pk9e-brand h1{padding-top:30px}
+.pk9e-sys button,.pk9e-feat>div{box-shadow:none!important}
+.pk9e-card::before,.pk9e-card::after,.pk9e-side::before,.pk9e-side::after,.pk9e-brand::before,.pk9e-brand::after,.pk9e-in::before,.pk9e-in::after{display:none!important}
 </style>
 </head>
 <body>
@@ -220,13 +228,12 @@ function floats(){ var F=X.sys==='study'?[
   return '<div class="pk9e-floats" aria-hidden="true">'+F.map(function(f){return '<div class="pk9e-fl '+f[0]+'">'+f[1]+'</div>';}).join('')+'</div>'; }
 function lawQuote(){ return '<div class="pk9e-law"><span class="k">§ סעיף 1 · חוק העונשין</span><p>"אין עבירה ואין עונש עליה אלא אם כן נקבעו בחוק או על-פיו."</p></div>'; }
 function html(){ var S=SYS[X.sys], login=X.tab==='login';
-  var brand='<div class="pk9e-brand"><div class="pk9e-wm">§</div><div class="pk9e-arcs"></div>'
-   +'<div class="pk9e-logo"><span class="seal">§</span><div><b>פרקליט</b><em>מהסטודנט ועד הפרקליט</em></div></div>'+floats()
+  var brand='<div class="pk9e-brand">'
+   +'<div class="pk9e-logo"><span class="seal">§</span><div><b>פרקליט</b><em>מהסטודנט ועד הפרקליט</em></div></div>'
    +'<h1>'+(X.sys==='study'?'המקום שבו':'המשרד שלך,')+'<br><span class="pk9e-rot" id="pk9eRot"><span class="gold w on">'+ROT[X.sys][0]+'</span></span></h1>'
    +'<div class="pk9e-sys">'+['study','firm'].map(function(k){ var s=SYS[k]; return '<button class="'+(X.sys===k?'on':'')+'" onclick="PK9E.set(\''+k+'\')"><span class="ic">'+sv(k)+'</span><span class="tx"><small>פרקליט</small><b>'+s.n+'</b><em>'+s.who+'</em></span><span class="rd"></span></button>'; }).join('')+'</div>'
    +'<div class="pk9e-feat">'+S.f.map(function(f){return '<div><span>'+sv(f[0])+'</span><b>'+f[1]+'</b><em>'+f[2]+'</em></div>';}).join('')+'</div>'
-   +(X.sys==='study'?'<div class="pk9e-stats">'+stats().map(function(s){return '<div><b>'+s[0]+'</b><span>'+s[1]+'</span></div>';}).join('')+'</div>':'<div class="pk9e-stats"><div><b>עברית</b><span>מימין לשמאל, מהיסוד</span></div><div><b>בכל מסך</b><span>מחשב, טאבלט וטלפון</span></div><div><b>במקום אחד</b><span>תיקים, יומן, לקוחות וגבייה</span></div></div>')
-   +lawQuote()+'</div>';
+   +'</div>';
   var per=X.sys==='study'?[['student','סטודנט'],['intern','מתמחה']]:[['lawyer','עורך דין']];
   if(per.map(function(p){return p[0];}).indexOf(X.per)<0)X.per=per[0][0];
   var form='<div class="pk9e-card"><div class="pk9e-ch"><span class="k">פרקליט · '+S.n+'</span><h2>'+(login?greet()+', ברוכים השבים':'פותחים חשבון')+'</h2><p>'+(login?'נכנסים וממשיכים בדיוק מאיפה שעצרת':'שתי דקות, ואת/ה בפנים')+'</p></div>'
@@ -243,7 +250,7 @@ function html(){ var S=SYS[X.sys], login=X.tab==='login';
    +'<div class="pk9e-ft">הנתונים שלך פרטיים ונשמרים במכשיר · <a>תקנון ופרטיות</a></div></div>';
   var seal='<div class="pk9e-stage"><div class="pk9e-glow"></div><svg class="pk9e-seal" viewBox="0 0 600 600"><defs><path id="pk9eC" d="M300,300 m-262,0 a262,262 0 1,1 524,0 a262,262 0 1,1 -524,0"/><linearGradient id="pk9eG" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#F1D78E"/><stop offset="1" stop-color="#9E7A2C"/></linearGradient></defs>'+'<circle cx="300" cy="300" r="292" class="r1"/><circle cx="300" cy="300" r="236" class="r2"/><circle cx="300" cy="300" r="226" class="r3"/>'+(function(){ var t=''; for(var i=0;i<72;i++){ var a=i*5*Math.PI/180, r1=i%6?284:276; t+='<line x1="'+(300+Math.cos(a)*r1).toFixed(1)+'" y1="'+(300+Math.sin(a)*r1).toFixed(1)+'" x2="'+(300+Math.cos(a)*292).toFixed(1)+'" y2="'+(300+Math.sin(a)*292).toFixed(1)+'" class="tk"/>'; } return t; })()+'<g class="spin"><text text-anchor="middle"><textPath href="#pk9eC" startOffset="50%">פרקליט ✦ מהסטודנט ועד הפרקליט ✦ לימודים ✦ משרד ✦ פרקליט ✦ מהסטודנט ועד הפרקליט ✦ לימודים ✦ משרד ✦</textPath></text></g></svg><div class="pk9e-rays"></div><div class="pk9e-dots"></div></div>';
   seal=seal.replace('<g class="spin">','<g class="spin2"><circle cx="300" cy="300" r="206" class="r4"/>'+(function(){ var t=''; for(var i=0;i<4;i++){ var a=i*Math.PI/2; t+='<text x="'+(300+Math.cos(a)*206).toFixed(1)+'" y="'+(300+Math.sin(a)*206+6).toFixed(1)+'" class="mk" text-anchor="middle">§</text>'; } return t; })()+'</g><g class="spin">');
-  return '<div class="pk9e-in">'+brand+'<div class="pk9e-side">'+seal+form+'</div></div>'; }
+  return '<div class="pk9e-in">'+brand+'<div class="pk9e-side">'+form+'</div></div>'; }
 
 X.draw=function(){ var g=document.getElementById('pk9Gate'); var u=(document.getElementById('pk9eU')||{}).value||'', n=(document.getElementById('pk9eN')||{}).value||''; g.innerHTML=html(); var a=document.getElementById('pk9eU'); if(a)a.value=u; var b=document.getElementById('pk9eN'); if(b)b.value=n; };
 X.set=function(k){ X.sys=k; X.err=''; LS.s('pk9_sys',k); X.draw(); };
