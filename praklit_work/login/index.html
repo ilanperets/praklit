@@ -3,74 +3,271 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>פרקליט — כניסה</title>
+<title>פרקליט</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;min-height:100%;background:#4a0b1e}
-body{font-family:-apple-system,"Segoe UI",Assistant,Arial,sans-serif;background:linear-gradient(160deg,#6d0f2a 0%,#3b0716 100%);background-attachment:fixed;color:#2a1c16;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px 16px}
-.wrap{width:100%;max-width:470px}.chips{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:14px}.chips span{color:#f3e2b3;border:1px solid rgba(232,200,115,.4);border-radius:99px;padding:5px 12px;font-size:13.5px}
-.brand{text-align:center;color:#fff;margin-bottom:20px}
-.seal{width:72px;height:72px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f6de9b,#c9a24a);color:#4a0b1e;font:700 38px Georgia,serif;box-shadow:0 0 0 6px rgba(232,200,115,.18),0 0 0 7px rgba(232,200,115,.5);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;border:3px solid #f1d78e}
-.brand h1{margin:14px 0 0;font-size:38px;font-weight:700;letter-spacing:.5px}.brand .k{margin:12px 0 0;font-size:20px;color:#fff;font-weight:600}.brand .k b{color:#e8c873}
-.brand p{margin:6px 0 0;color:#e8c873;font-size:16px}
-.card{background:#fbf8f2;border:1px solid rgba(201,162,74,.6);border-radius:22px;padding:28px 24px 22px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
-h2{margin:0 0 4px;font-size:25px}
-.sub{margin:0 0 16px;color:#7a6a5e;font-size:15px}
-.tabs{display:flex;background:#eee6d6;border-radius:12px;padding:4px;margin-bottom:16px}
-.tabs button{flex:1;border:0;background:none;padding:11px;border-radius:9px;font-family:inherit;font-weight:600;font-size:17px;color:#7a6a5e}
-.tabs button.on{background:#fff;color:#7b1230;box-shadow:0 1px 4px rgba(0,0,0,.12)}
-label{display:block;font-size:13px;font-weight:600;color:#7b1230;margin:0 4px 4px}
-input{-webkit-appearance:none;appearance:none;width:100%;border:1px solid #d8c9a8;background:#fffdf8;border-radius:12px;padding:14px;font-size:16px;font-family:inherit;margin-bottom:12px;color:#2a1c16;outline:none}
-input:focus{border-color:#b8913c;box-shadow:0 0 0 3px rgba(201,162,74,.25)}
-.go{width:100%;border:0;border-radius:12px;padding:15px;background:#7b1230;color:#fff;font-family:inherit;font-weight:700;font-size:18px;margin-top:6px}
-.go:active{background:#5e0d24}
-.err{color:#b3261e;font-size:14px;min-height:20px;margin:0 2px 6px}
-.foot{text-align:center;color:#7a6a5e;font-size:12.5px;margin-top:14px}
-.hide{display:none}
+/* ===== מסך כניסה ===== */
+#pk9Gate{position:fixed;inset:0;z-index:99000;display:block;padding:0;overflow:auto;direction:rtl;opacity:0;pointer-events:none;transition:opacity .4s;background:radial-gradient(90% 110% at 100% 0%,#7E2A38 0%,#5A1B26 38%,#3C121A 72%,#2E0D14 100%)}
+#pk9Gate.in{opacity:1;pointer-events:auto}
+.pk9e-in{min-height:100%;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(400px,.88fr)}
+.pk9e-brand{position:relative;overflow:hidden;padding:56px 72px 48px;color:#F6EAD3;display:flex;flex-direction:column}
+.pk9e-wm{position:absolute;left:-60px;bottom:-140px;font:400 620px/1 'Assistant','Heebo',sans-serif;color:rgba(217,184,101,.045);pointer-events:none;user-select:none}
+.pk9e-arcs{position:absolute;inset:0;background:repeating-radial-gradient(circle at 0% 100%,transparent 0 46px,rgba(217,184,101,.05) 47px 48px);mask-image:radial-gradient(70% 70% at 0% 100%,#000,transparent);-webkit-mask-image:radial-gradient(70% 70% at 0% 100%,#000,transparent);pointer-events:none}
+.pk9e-brand>*:not(.pk9e-wm):not(.pk9e-arcs){position:relative}
+.pk9e-logo{display:flex;align-items:center;gap:14px}
+.pk9e-logo .seal{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font:500 26px 'Assistant','Heebo',sans-serif;color:#2A1408;background:radial-gradient(circle at 35% 30%,#F1D78E,#C9A24A 60%,#9E7A2C);box-shadow:0 0 0 4px rgba(217,184,101,.14),0 10px 24px -8px rgba(0,0,0,.6)}
+.pk9e-logo b{display:block;font:700 27px 'Assistant','Heebo',sans-serif;color:#fff;letter-spacing:.01em}.pk9e-logo em{font:400 13px var(--pk-ui);font-style:normal;color:#D9B865}
+.pk9e-brand h1{font:700 56px/1.12 'Assistant','Heebo',sans-serif;color:#fff;margin:auto 0 30px;padding-top:50px;letter-spacing:-.01em}
+.pk9e-sys{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:620px}
+.pk9e-sys button{position:relative;display:flex;gap:14px;align-items:center;text-align:right;padding:16px 18px;border-radius:18px;border:1px solid rgba(243,217,162,.18);background:rgba(255,255,255,.04);color:#F6EAD3;cursor:pointer;transition:.2s;backdrop-filter:blur(6px)}
+.pk9e-sys button:hover{background:rgba(255,255,255,.07);border-color:rgba(243,217,162,.35)}
+.pk9e-sys button.on{background:linear-gradient(135deg,rgba(217,184,101,.16),rgba(217,184,101,.05));border-color:#D9B865;box-shadow:0 14px 34px -18px rgba(217,184,101,.55)}
+.pk9e-sys .ic{width:44px;height:44px;border-radius:13px;flex:none;display:grid;place-items:center;background:rgba(217,184,101,.14)}
+.pk9e-sys button.on .ic{background:#D9B865}
+.pk9e-sys svg{width:22px;height:22px;stroke:#E8C877;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.pk9e-sys button.on svg{stroke:#3A1A0C}
+.pk9e-sys .tx{flex:1}.pk9e-sys small{display:block;font:600 10.5px var(--pk-ui);letter-spacing:.16em;color:#C9A24A}.pk9e-sys b{display:block;font:700 21px 'Assistant','Heebo',sans-serif;color:#fff}.pk9e-sys em{display:block;font:400 12.5px var(--pk-ui);font-style:normal;color:#CDB79B}
+.pk9e-sys .rd{width:18px;height:18px;border-radius:50%;border:1.5px solid rgba(243,217,162,.4);flex:none}.pk9e-sys button.on .rd{border:5px solid #D9B865}
+.pk9e-feat{display:grid;grid-template-columns:1fr 1fr;gap:16px 26px;margin:28px 0 0;max-width:620px}
+.pk9e-feat div{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:center}
+.pk9e-feat span{grid-row:1/3;width:36px;height:36px;border-radius:11px;border:1px solid rgba(243,217,162,.2);display:grid;place-items:center}
+.pk9e-feat svg{width:18px;height:18px;stroke:#D9B865;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pk9e-feat b{font:600 14.5px var(--pk-ui);color:#F6EAD3}.pk9e-feat em{font:400 12.5px var(--pk-ui);font-style:normal;color:#BFA88E}
+.pk9e-stats{display:flex;gap:36px;margin-top:36px;padding-top:22px;border-top:1px solid rgba(243,217,162,.14);max-width:620px}
+.pk9e-stats b{display:block;font:700 30px 'Assistant','Heebo',sans-serif;color:#E8C877}.pk9e-stats span{font:400 12.5px var(--pk-ui);color:#BFA88E}
+.pk9e-side{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:40px 48px;background:radial-gradient(70% 60% at 50% 50%,rgba(122,39,53,.55),rgba(46,13,20,0) 70%)}
+.pk9e-side>.pk9e-card{position:relative;z-index:2}
+.pk9e-card{width:100%;max-width:430px;background:#FBF8F2;border-radius:28px;padding:34px 34px 26px;box-shadow:0 40px 80px -30px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.4) inset;animation:pk9eIn .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes pk9eIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.pk9e-ch .k{font:600 11.5px var(--pk-ui);letter-spacing:.14em;color:#B8913C}
+.pk9e-ch h2{font:700 31px 'Assistant','Heebo',sans-serif;color:#2A1A16;margin:4px 0 2px}.pk9e-ch p{margin:0 0 18px;font:400 14px var(--pk-ui);color:#8A7B70}
+.pk9e-tabs{display:flex;background:#EFE8DB;border-radius:13px;padding:4px;margin-bottom:16px}
+.pk9e-tabs button{flex:1;height:38px;border:none;border-radius:10px;background:none;font:500 14.5px var(--pk-ui);color:#7A6A5E;cursor:pointer}
+.pk9e-tabs button.on{background:#fff;color:#5A1B24;box-shadow:0 1px 3px rgba(60,30,20,.12)}
+.pk9e-err{background:#FBEEEE;border:1px solid #EBC9CC;color:#8A2525;border-radius:12px;padding:10px 12px;font:500 13px var(--pk-ui);margin-bottom:12px}
+.pk9e-f{position:relative;display:flex;align-items:center;margin-bottom:10px}
+.pk9e-f>span{position:absolute;right:14px;top:50%;transform:translateY(-50%);display:grid}
+.pk9e-f svg{width:19px;height:19px;stroke:#A8978A;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pk9e-f input{width:100%;height:52px;border:1.5px solid #E6DCCD;border-radius:14px;background:#fff;padding:0 46px 0 46px;font:400 15.5px var(--pk-ui);color:#2A1A16;transition:.15s;box-sizing:border-box}
+.pk9e-f input:focus{outline:none;border-color:#8A2E3A;box-shadow:0 0 0 4px rgba(138,46,58,.1)}
+.pk9e-f input:focus~span svg,.pk9e-f:focus-within>span svg{stroke:#8A2E3A}
+.pk9e-f .eye{position:absolute;left:10px;top:50%;transform:translateY(-50%);border:none;background:none;cursor:pointer;padding:6px;display:grid}
+.pk9e-per{display:flex;gap:6px;margin-bottom:10px}.pk9e-per button{flex:1;height:40px;border:1.5px solid #E6DCCD;border-radius:12px;background:#fff;font:500 14px var(--pk-ui);color:#6A5A50;cursor:pointer}.pk9e-per button.on{border-color:#8A2E3A;color:#5A1B24;background:#FBF1F1}
+.pk9e-row{display:flex;justify-content:space-between;align-items:center;margin:4px 2px 16px;font:400 13px var(--pk-ui);color:#7A6A5E}.pk9e-row label{display:flex;gap:6px;align-items:center;cursor:pointer}.pk9e-row input{accent-color:#8A2E3A}.pk9e-row a{color:#8A2E3A;cursor:pointer}
+.pk9e-go{width:100%;height:54px;border:none;border-radius:15px;background:linear-gradient(180deg,#7A2735,#5A1B24);color:#fff;font:600 16px var(--pk-ui);cursor:pointer;box-shadow:0 14px 28px -14px rgba(90,27,36,.9);transition:.15s;margin-top:4px}
+.pk9e-go:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.pk9e-or{display:flex;align-items:center;gap:12px;margin:20px 0 12px;font:400 12.5px var(--pk-ui);color:#A8978A}.pk9e-or:before,.pk9e-or:after{content:'';flex:1;height:1px;background:#E6DCCD}
+.pk9e-demo{display:flex;gap:8px}.pk9e-demo button{flex:1;min-height:44px;border:1.5px solid #E2D2B4;border-radius:13px;background:#FFFBF1;color:#5A1B24;font:500 13.5px var(--pk-ui);cursor:pointer;padding:6px 10px}.pk9e-demo button:hover{border-color:#B8913C}
+.pk9e-ft{text-align:center;margin-top:18px;font:400 12px var(--pk-ui);color:#A8978A}.pk9e-ft a{color:#8A7B70;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:1100px){.pk9e-brand{padding:44px 44px}.pk9e-brand h1{font-size:44px}}
+@media (max-width:900px){
+ .pk9e-in{grid-template-columns:1fr}
+ .pk9e-brand{padding:26px 20px 22px}.pk9e-brand h1{font-size:32px;margin:22px 0 18px;padding:0}
+ .pk9e-feat,.pk9e-stats,.pk9e-wm{display:none}
+ .pk9e-sys{gap:8px}.pk9e-sys button{padding:12px;gap:10px}.pk9e-sys .ic{width:36px;height:36px}.pk9e-sys b{font-size:18px}.pk9e-sys em{font-size:11.5px}.pk9e-sys .rd{display:none}
+ .pk9e-side{padding:0 14px 30px;background:none}.pk9e-card{padding:24px 20px 20px;border-radius:24px}.pk9e-ch h2{font-size:27px}
+ .pk9e-demo{flex-direction:column}
+}
+
+/* ===== הצד הכהה: חותם זהב חי ===== */
+.pk9e-brand h1 .gold{background:linear-gradient(100deg,#F6DE9B 0%,#D9B865 40%,#B8913C 70%,#F1D78E 100%);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:pk9eShine 8s ease-in-out infinite}
+@keyframes pk9eShine{0%,100%{background-position:0% 0}50%{background-position:100% 0}}
+.pk9e-stage{position:absolute;inset:0;pointer-events:none;z-index:1}
+.pk9e-glow{position:absolute;left:50%;top:50%;width:720px;height:720px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(217,184,101,.20) 0%,rgba(217,184,101,.08) 32%,rgba(217,184,101,0) 62%);animation:pk9eBreath 7s ease-in-out infinite}
+@keyframes pk9eBreath{0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(.96)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.04)}}
+.pk9e-seal{position:absolute;left:50%;top:50%;width:min(760px,118%);height:auto;transform:translate(-50%,-50%);overflow:visible}
+.pk9e-seal .r1{fill:none;stroke:rgba(217,184,101,.32);stroke-width:1.2}.pk9e-seal .r2{fill:none;stroke:rgba(217,184,101,.22);stroke-width:1}.pk9e-seal .r3{fill:none;stroke:rgba(217,184,101,.12);stroke-width:1;stroke-dasharray:2 6}
+.pk9e-seal .tk{stroke:rgba(217,184,101,.35);stroke-width:1.2}
+.pk9e-seal .spin{transform-origin:300px 300px;animation:pk9eSpin 90s linear infinite}
+.pk9e-seal text{font:600 17px 'Assistant',sans-serif;letter-spacing:5px;fill:url(#pk9eG);opacity:.85}
+@keyframes pk9eSpin{to{transform:rotate(-360deg)}}
+.pk9e-rays{position:absolute;inset:-20%;background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(217,184,101,.045) 0deg 2deg,transparent 2deg 15deg);mask-image:radial-gradient(circle at 50% 50%,#000 20%,transparent 62%);-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 20%,transparent 62%);animation:pk9eSpin 240s linear infinite}
+.pk9e-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(243,217,162,.16) 1px,transparent 1.4px);background-size:26px 26px;mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent);opacity:.6}
+.pk9e-card{box-shadow:0 50px 100px -30px rgba(10,0,4,.85),0 0 0 1px rgba(217,184,101,.25),0 0 80px -20px rgba(217,184,101,.35)}
+.pk9e-trust{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;margin:18px 0 0;font:500 12.5px 'Assistant',sans-serif;color:#7A6A5E}
+.pk9e-wm{color:rgba(217,184,101,.05)!important;font-family:'Frank Ruhl Libre',serif!important}
+@media (prefers-reduced-motion:reduce){.pk9e-seal .spin,.pk9e-rays,.pk9e-glow,.pk9e-brand h1 .gold{animation:none}}
+@media (max-width:900px){.pk9e-stage{display:none}.pk9e-side{background:none}.pk9e-brand h1{font-size:34px}}
+
+/* ===== מסך כניסה · שדרוג נוסף ===== */
+#pk9Gate{--mx:70vw;--my:30vh}
+.pk9e-dust{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.pk9e-spot{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(217,184,101,.10),transparent 60%);transition:background .1s}
+.pk9e-in{position:relative;z-index:1}
+/* כותרת מתחלפת */
+.pk9e-rot{position:relative;display:inline-grid;vertical-align:top;min-height:1.15em}
+.pk9e-rot .w{grid-area:1/1;opacity:0;transform:translateY(.45em);filter:blur(6px);transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1),filter .6s;white-space:nowrap}
+.pk9e-rot .w.on{opacity:1;transform:none;filter:none}
+.pk9e-rot .w.out{opacity:0;transform:translateY(-.45em);filter:blur(6px)}
+.pk9e-brand h1 .gold{display:inline-block}
+/* כרטיסיות צפות */
+.pk9e-floats{position:relative;height:150px;margin:26px 0 -40px;max-width:620px;transition:transform .25s ease-out;pointer-events:none}
+.pk9e-fl{position:absolute;display:flex;align-items:center;gap:12px;padding:11px 16px 11px 14px;border-radius:16px;background:rgba(255,248,236,.08);border:1px solid rgba(243,217,162,.22);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 20px 40px -22px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.08);animation:pk9eBob 6s ease-in-out infinite}
+.pk9e-fl b{display:block;font:600 14px var(--pk-ui);color:#FBF1DC}.pk9e-fl em{display:block;font:400 12px var(--pk-ui);font-style:normal;color:#C9B39A}
+.pk9e-fl.f1{right:0;top:6px}.pk9e-fl.f2{right:250px;top:52px;animation-delay:-2s}.pk9e-fl.f3{right:60px;top:98px;animation-delay:-4s}
+@keyframes pk9eBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.pk9e-fl .dot{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font:700 13px var(--pk-ui);flex:none}
+.pk9e-fl .dot.ok{background:rgba(78,154,107,.25);color:#9BE0B4;border:1px solid rgba(155,224,180,.35)}
+.pk9e-fl .dot.fire{background:rgba(217,184,101,.18);font-size:16px}
+.pk9e-fl .dot.cal{background:rgba(217,184,101,.2);color:#F1D78E;font-size:11.5px;width:44px}
+.pk9e-fl .ring{position:relative;width:38px;height:38px;flex:none}.pk9e-fl .ring svg{width:38px;height:38px;transform:rotate(-90deg)}
+.pk9e-fl .ring circle{fill:none;stroke-width:3.4}.pk9e-fl .ring .bg{stroke:rgba(255,255,255,.12)}.pk9e-fl .ring .fg{stroke:#D9B865;stroke-dasharray:94.2;stroke-dashoffset:17;stroke-linecap:round}
+.pk9e-fl .ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 10px var(--pk-ui);color:#F1D78E}
+/* סעיף היום */
+.pk9e-law{margin-top:26px;max-width:620px;padding:14px 18px;border-radius:16px;border:1px solid rgba(243,217,162,.14);background:linear-gradient(90deg,rgba(217,184,101,.07),rgba(217,184,101,0));position:relative}
+.pk9e-law:before{content:'';position:absolute;right:0;top:12px;bottom:12px;width:3px;border-radius:3px;background:linear-gradient(180deg,#F1D78E,#9E7A2C)}
+.pk9e-law .k{font:600 11px var(--pk-ui);letter-spacing:.14em;color:#C9A24A}
+.pk9e-law p{margin:4px 0 0;font:400 16px/1.7 'Frank Ruhl Libre','David Libre',serif;color:#EADFCC}
+/* חותם: טבעת פנימית */
+.pk9e-seal .spin2{transform-origin:300px 300px;animation:pk9eSpinR 140s linear infinite}
+@keyframes pk9eSpinR{to{transform:rotate(360deg)}}
+.pk9e-seal .r4{fill:none;stroke:rgba(217,184,101,.16);stroke-width:1;stroke-dasharray:1 9}
+.pk9e-seal .mk{font:400 20px 'Frank Ruhl Libre',serif!important;letter-spacing:0!important;fill:#D9B865!important;opacity:.55}
+/* כרטיס: זכוכית, הטיה, תוויות צפות */
+.pk9e-card{transition:transform .25s ease-out,box-shadow .3s;transform-style:preserve-3d;position:relative}
+.pk9e-card:before{content:'';position:absolute;inset:-1px;border-radius:29px;padding:1px;background:linear-gradient(135deg,rgba(241,215,142,.9),rgba(217,184,101,.1) 35%,rgba(217,184,101,0) 60%,rgba(241,215,142,.6));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.pk9e-card.shake{animation:pk9eShake .45s}
+@keyframes pk9eShake{0%,100%{transform:none}20%{transform:translateX(-8px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
+.pk9e-f i{position:absolute;right:46px;top:50%;transform:translateY(-50%);font:400 15px var(--pk-ui);font-style:normal;color:#A8978A;pointer-events:none;transition:.18s cubic-bezier(.2,.8,.2,1);background:#fff;padding:0 6px;border-radius:6px}
+.pk9e-f input:focus+i,.pk9e-f input:not(:placeholder-shown)+i{top:0;font-size:11.5px;color:#8A2E3A;font-weight:600}
+.pk9e-f .ok{position:absolute;left:14px;top:50%;transform:translateY(-50%) scale(.4);opacity:0;color:#2E6B45;font:700 15px var(--pk-ui);transition:.2s}
+.pk9e-f .ok.in{opacity:1;transform:translateY(-50%) scale(1)}
+.pk9e-caps{display:none;margin:-4px 2px 8px;font:500 12px var(--pk-ui);color:#9A6A10}.pk9e-caps.in{display:block}
+.pk9e-str{display:grid;grid-template-columns:repeat(4,1fr) auto;gap:5px;align-items:center;margin:-2px 2px 12px}
+.pk9e-str i{height:4px;border-radius:3px;background:#EAE1D2;transition:.25s}.pk9e-str span{font:500 11.5px var(--pk-ui);color:#8A7B70;margin-right:6px;min-width:62px;text-align:left}
+.pk9e-str[data-n="1"] i:nth-child(-n+1){background:#C0392B}.pk9e-str[data-n="2"] i:nth-child(-n+2){background:#D98C2B}.pk9e-str[data-n="3"] i:nth-child(-n+3){background:#B8913C}.pk9e-str[data-n="4"] i{background:#2E6B45}
+/* כפתור: טעינה והצלחה */
+.pk9e-go{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px}
+.pk9e-go:after{content:'';position:absolute;top:0;bottom:0;width:60%;left:-70%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent);transform:skewX(-20deg);transition:left .7s}
+.pk9e-go:hover:after{left:120%}
+.pk9e-go .ar{font-size:18px;transition:transform .2s}.pk9e-go:hover .ar{transform:translateX(-4px)}
+.pk9e-go .sp{display:none;width:20px;height:20px;border-radius:50%;border:2.5px solid rgba(255,255,255,.3);border-top-color:#F1D78E;animation:pk9eSp .7s linear infinite}
+@keyframes pk9eSp{to{transform:rotate(360deg)}}
+.pk9e-go.busy .t,.pk9e-go.busy .ar{display:none}.pk9e-go.busy .sp{display:block}
+.pk9e-go.done{background:linear-gradient(180deg,#E4C67A,#B8913C);color:#2A1408}.pk9e-go.done .ar{display:none}.pk9e-go.done .t{font-size:22px}
+/* מעבר הצלחה */
+.pk9e-wipe{position:fixed;inset:0;z-index:5;display:grid;place-items:center;pointer-events:none;background:radial-gradient(circle at 50% 50%,#6A2230,#2E0D14);clip-path:circle(0% at 50% 50%);transition:clip-path .9s cubic-bezier(.7,0,.2,1)}
+.pk9e-wipe.in{clip-path:circle(150% at 50% 50%)}
+.pk9e-wipe div{text-align:center;opacity:0;transform:translateY(10px);transition:.5s .45s}.pk9e-wipe.in div{opacity:1;transform:none}
+.pk9e-wipe .seal{display:inline-grid;place-items:center;width:84px;height:84px;border-radius:50%;font:500 40px 'Frank Ruhl Libre',serif;color:#2A1408;background:radial-gradient(circle at 35% 30%,#F1D78E,#C9A24A 60%,#9E7A2C);box-shadow:0 0 0 8px rgba(217,184,101,.15),0 0 80px rgba(217,184,101,.45)}
+.pk9e-wipe b{display:block;margin-top:18px;font:700 30px var(--pk-ui);color:#fff}
+/* כניסה מדורגת */
+.pk9e-in.first .pk9e-logo,.pk9e-in.first .pk9e-floats,.pk9e-in.first .pk9e-brand h1,.pk9e-in.first .pk9e-sys,.pk9e-in.first .pk9e-feat,.pk9e-in.first .pk9e-stats,.pk9e-in.first .pk9e-law{animation:pk9eUp .8s cubic-bezier(.2,.8,.2,1) both}
+.pk9e-in.first .pk9e-floats{animation-delay:.12s}.pk9e-in.first .pk9e-brand h1{animation-delay:.2s}.pk9e-in.first .pk9e-sys{animation-delay:.3s}.pk9e-in.first .pk9e-feat{animation-delay:.4s}.pk9e-in.first .pk9e-stats{animation-delay:.5s}.pk9e-in.first .pk9e-law{animation-delay:.6s}
+.pk9e-in.first .pk9e-card{animation:pk9eUp .9s .25s cubic-bezier(.2,.8,.2,1) both}
+.pk9e-in.first .pk9e-stage{animation:pk9eFade 1.6s ease both}
+@keyframes pk9eUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes pk9eFade{from{opacity:0}to{opacity:1}}
+.pk9e-brand h1{margin-top:auto;padding-top:20px}
+@media (max-width:1250px){.pk9e-fl.f2{right:210px}.pk9e-law{display:none}}
+@media (prefers-reduced-motion:reduce){.pk9e-fl,.pk9e-seal .spin2{animation:none}.pk9e-in.first *{animation:none!important}}
+@media (max-width:900px){.pk9e-floats,.pk9e-law,.pk9e-dust,.pk9e-spot{display:none}.pk9e-card:before{display:none}.pk9e-rot .w{white-space:normal}}
+.pk9e-floats{height:160px;margin:34px 0 0}
+.pk9e-fl.f1{right:0;top:0}.pk9e-fl.f2{right:auto;left:40px;top:34px}.pk9e-fl.f3{right:110px;top:92px}
+.pk9e-brand h1{margin-top:auto;padding-top:28px}
+.pk9e-f i{background:transparent}
+.pk9e-f input:focus+i,.pk9e-f input:not(:placeholder-shown)+i{background:#fff}
+@media (max-width:1250px){.pk9e-fl.f2{left:0}}
+
+/* ===== גרסה סטטית: אותו עיצוב, בלי אנימציות/טשטוש/הטיות ===== */
+:root{--pk-ui:'Assistant','Heebo',system-ui,sans-serif}
+html,body{margin:0;background:#2E0D14}
+body{font-family:'Assistant','Heebo',system-ui,sans-serif}
+#pk9Gate{opacity:1!important;pointer-events:auto!important}
+#pk9Gate,#pk9Gate *{animation:none!important;transition:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;will-change:auto!important}
+.pk9e-card{transform:none!important}
+.pk9e-floats{transform:none!important}
+.pk9e-fl{background:rgba(255,248,236,.13)!important}
+.pk9e-brand h1 .gold{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-fill-color:#F1D78E!important;color:#F1D78E!important}
+.pk9e-rot .w{filter:none!important;opacity:1!important;transform:none!important;position:static!important}
+.pk9e-rays{display:none!important}
+.pk9e-glow{opacity:.9}
+.pk9e-card input{font-size:16px}
+
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="brand"><div class="seal">§</div><h1>פרקליט</h1><p>מהסטודנט ועד הפרקליט</p><div class="k">המקום שבו <b>לומדים משפטים</b></div><div class="chips"><span>23 קורסים מלאים</span><span>+1,900 פסקי דין</span><span>+4,000 שאלות</span></div></div>
-  <form class="card" id="f" autocomplete="on" novalidate>
-    <h2 id="h">ברוכים השבים</h2>
-    <p class="sub" id="s">נכנסים וממשיכים בדיוק מאיפה שעצרת</p>
-    <div class="tabs"><button type="button" id="tl" class="on">כניסה</button><button type="button" id="tr">הרשמה</button></div>
-    <div id="nmw" class="hide"><label for="nm">שם מלא</label><input id="nm" autocomplete="name"></div>
-    <label for="u">שם משתמש</label><input id="u" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false">
-    <label for="p">סיסמה</label><input id="p" type="password" autocomplete="current-password">
-    <div class="err" id="e" role="alert"></div>
-    <button class="go" id="go" type="submit">כניסה לפרקליט</button>
-    <div class="foot">הנתונים שלך נשמרים במכשיר</div>
-  </form>
-</div>
+<div id="pk9Gate" class="in"></div>
 <script>
 (function(){
-  var K='pkst_praklit_auth', mode='login';
-  function hashPass(pw){var h=5381,s='prk_salt_'+pw;for(var i=0;i<s.length;i++){h=((h<<5)+h+s.charCodeAt(i))>>>0;}return h.toString(16);}
-  function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
-  function load(){var a=null;try{a=JSON.parse(localStorage.getItem(K)||'null');}catch(e){} if(!a)a={users:[],session:null}; if(!a.users)a.users=[]; if(!a.tickets)a.tickets=[]; if(!a.users.some(function(u){return u.role==='admin';})){a.users.push({id:uid(),user:'admin',name:'מנהל ראשי',pass:'c9dbc096',role:'admin',created:Date.now(),sub:{status:'active',plan:'מנהל',paidUntil:0}});} return a;}
-  function save(a){try{localStorage.setItem(K,JSON.stringify(a));return true;}catch(e){return false;}}
-  function byName(a,n){n=String(n||'').trim().toLowerCase();for(var i=0;i<a.users.length;i++){if(String(a.users[i].user).toLowerCase()===n)return a.users[i];}return null;}
-  var $=function(i){return document.getElementById(i)};
-  function setMode(m){mode=m;var r=m==='reg';$('tl').className=r?'':'on';$('tr').className=r?'on':'';$('nmw').className=r?'':'hide';$('h').textContent=r?'פותחים חשבון':'ברוכים השבים';$('s').textContent=r?'שם משתמש וסיסמה וממשיכים ללמוד':'נכנסים וממשיכים בדיוק מאיפה שעצרת';$('go').textContent=r?'פתיחת חשבון':'כניסה לפרקליט';$('p').setAttribute('autocomplete',r?'new-password':'current-password');$('e').textContent='';}
-  $('tl').onclick=function(){setMode('login')};$('tr').onclick=function(){setMode('reg')};
-  // מי שכבר מחובר ממשיך ישר לאפליקציה
-  try{var a0=load();if(a0.session&&a0.users.some(function(u){return u.id===a0.session;})&&location.search.indexOf('stay=1')<0){location.replace('app.html');return;}}catch(e){}
-  $('f').onsubmit=function(ev){
-    ev.preventDefault();var a=load(),user=$('u').value.trim(),pw=$('p').value,err=null;
-    if(mode==='login'){
-      var u=byName(a,user);
-      if(!u)err='שם המשתמש אינו קיים';else if(u.pass!==hashPass(pw))err='סיסמה שגויה';else if(u.role!=='admin'&&u.sub&&u.sub.status==='suspended')err='החשבון מושעה. נא לפנות למנהל המערכת.';
-      else a.session=u.id;
-    }else{
-      if(user.length<3)err='שם משתמש קצר מדי (לפחות 3 תווים)';else if(pw.length<4)err='סיסמה קצרה מדי (לפחות 4 תווים)';else if(byName(a,user))err='שם המשתמש כבר תפוס';
-      else{var n={id:uid(),user:user,name:$('nm').value.trim()||user,pass:hashPass(pw),role:'student',persona:'student',created:Date.now(),sub:{status:'trial',plan:'חודשי',paidUntil:Date.now()+14*864e5}};a.users.push(n);a.session=n.id;}
-    }
-    if(err){$('e').textContent=err;return;}
-    if(!save(a)){$('e').textContent='לא ניתן לשמור במכשיר (מצב גלישה פרטי חוסם שמירה?)';return;}
-    $('go').textContent='נכנסים…';location.replace('app.html');
-  };
+var K='pkst_praklit_auth';
+function E(x){return String(x==null?'':x).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+var LS={g:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}},s:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+var X=window.PK9E={sys:LS.g('pk9_sys','study'),tab:'login',per:'student',err:''};
+if(X.sys!=='firm')X.sys='study';
+function hashPass(pw){var h=5381,s='prk_salt_'+pw;for(var i=0;i<s.length;i++){h=((h<<5)+h+s.charCodeAt(i))>>>0;}return h.toString(16);}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function load(){var a=null;try{a=JSON.parse(localStorage.getItem(K)||'null');}catch(e){} if(!a)a={users:[],session:null}; if(!a.users)a.users=[]; if(!a.tickets)a.tickets=[]; if(!a.users.some(function(u){return u.role==='admin';})){a.users.push({id:uid(),user:'admin',name:'מנהל ראשי',pass:'c9dbc096',role:'admin',created:Date.now(),sub:{status:'active',plan:'מנהל',paidUntil:0}});} return a;}
+function save(a){try{localStorage.setItem(K,JSON.stringify(a));return true;}catch(e){return false;}}
+function byName(a,n){n=String(n||'').trim().toLowerCase();for(var i=0;i<a.users.length;i++){if(String(a.users[i].user).toLowerCase()===n)return a.users[i];}return null;}
+var IC={study:'<path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M7 11.5V16c0 1.2 2.2 2.5 5 2.5s5-1.3 5-2.5v-4.5"/>',firm:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2M3 13h18"/>',
+ user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/>',lock:'<rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 018 0v3"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',id:'<rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="9" cy="11" r="2.5"/><path d="M14 10h4M14 14h4M6 16c.6-1.4 1.7-2 3-2s2.4.6 3 2"/>',
+ b1:'<path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5z"/>',b2:'<path d="M9 3a3 3 0 00-3 3 3 3 0 00-2 5 3 3 0 001 5 3 3 0 005 3V3zM15 3a3 3 0 013 3 3 3 0 012 5 3 3 0 01-1 5 3 3 0 01-5 3V3z"/>',b3:'<path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/>',b4:'<path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4z"/>',
+ f1:'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>',f2:'<path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>',f3:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.5-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.5a3.5 3.5 0 010 7M18 14.5c2 .7 3.2 2.6 3.5 5.5"/>',f4:'<path d="M12 2v20M17 6H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>'};
+function sv(k){return '<svg viewBox="0 0 24 24">'+IC[k]+'</svg>';}
+var SYS={study:{n:'לימודים',who:'לסטודנטים למשפטים ולמתמחים',f:[['b1','23 קורסים מלאים','סיכומים, פסיקה ותרגול לכל שיעור'],['b2','המוח שלי','מעלים חומר — ומקבלים סיכום, מפה ושאלות'],['b3','מחברת ועורך PDF','כתיבה כמו ב-Word, סימון וחתימה כמו באקרובט'],['b4','לומדים בכיף','מבחן בזק, דו־קרב ושיעור חי בכיתה']],cta:'כניסה לפרקליט לימודים'},
+ firm:{n:'משרד',who:'לעורכי דין ולמשרדים',f:[['f1','היום במשרד','משימות, דיונים ומועדים במבט אחד'],['f2','תיקים ומסמכים','כל תיק עם הצדדים, המסמכים והשעות'],['f3','לקוחות ולידים','מהפנייה הראשונה ועד הסכם שכר הטרחה'],['f4','גבייה וחשבוניות','מה שולם, מה פתוח ומה באיחור']],cta:'כניסה לפרקליט משרד'}};
+function stats(){ return [['23','קורסים'],['1,900+','פסקי דין וסעיפים'],['4,000+','שאלות עם הסבר']]; }
+var ROT={study:['לומדים משפטים.','עוברים מבחנים.','מבינים פסיקה.','מתמחים בביטחון.'],firm:['מסודר.','בשליטה.','בזמן.','במקום אחד.']};
+function greet(){ var h=new Date().getHours(); return h<5?'לילה טוב':h<12?'בוקר טוב':h<17?'צהריים טובים':h<21?'ערב טוב':'לילה טוב'; }
+function floats(){ var F=X.sys==='study'?[
+   ['f1','<span class="dot ok">✓</span><div><b>תשובה נכונה</b><em>ס׳ 25 · ניסיון לעבור עבירה</em></div>'],
+   ['f2','<div class="ring"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" class="bg"/><circle cx="18" cy="18" r="15" class="fg"/></svg><b>82%</b></div><div><b>מוכנות למבחן</b><em>דיני עונשין</em></div>'],
+   ['f3','<span class="dot fire">🔥</span><div><b>12 ימים ברצף</b><em>חזרה יומית של 5 דקות</em></div>']]:[
+   ['f1','<span class="dot cal">09:30</span><div><b>דיון מחר</b><em>בית משפט השלום · תיק 214</em></div>'],
+   ['f2','<div class="ring"><svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" class="bg"/><circle cx="18" cy="18" r="15" class="fg"/></svg><b>3/5</b></div><div><b>משימות להיום</b><em>שתיים נשארו</em></div>'],
+   ['f3','<span class="dot ok">₪</span><div><b>חשבונית שולמה</b><em>הסכם שכר טרחה · ינואר</em></div>']];
+  return '<div class="pk9e-floats" aria-hidden="true">'+F.map(function(f){return '<div class="pk9e-fl '+f[0]+'">'+f[1]+'</div>';}).join('')+'</div>'; }
+function lawQuote(){ return '<div class="pk9e-law"><span class="k">§ סעיף 1 · חוק העונשין</span><p>"אין עבירה ואין עונש עליה אלא אם כן נקבעו בחוק או על-פיו."</p></div>'; }
+function html(){ var S=SYS[X.sys], login=X.tab==='login';
+  var brand='<div class="pk9e-brand"><div class="pk9e-wm">§</div><div class="pk9e-arcs"></div>'
+   +'<div class="pk9e-logo"><span class="seal">§</span><div><b>פרקליט</b><em>מהסטודנט ועד הפרקליט</em></div></div>'+floats()
+   +'<h1>'+(X.sys==='study'?'המקום שבו':'המשרד שלך,')+'<br><span class="pk9e-rot" id="pk9eRot"><span class="gold w on">'+ROT[X.sys][0]+'</span></span></h1>'
+   +'<div class="pk9e-sys">'+['study','firm'].map(function(k){ var s=SYS[k]; return '<button class="'+(X.sys===k?'on':'')+'" onclick="PK9E.set(\''+k+'\')"><span class="ic">'+sv(k)+'</span><span class="tx"><small>פרקליט</small><b>'+s.n+'</b><em>'+s.who+'</em></span><span class="rd"></span></button>'; }).join('')+'</div>'
+   +'<div class="pk9e-feat">'+S.f.map(function(f){return '<div><span>'+sv(f[0])+'</span><b>'+f[1]+'</b><em>'+f[2]+'</em></div>';}).join('')+'</div>'
+   +(X.sys==='study'?'<div class="pk9e-stats">'+stats().map(function(s){return '<div><b>'+s[0]+'</b><span>'+s[1]+'</span></div>';}).join('')+'</div>':'<div class="pk9e-stats"><div><b>עברית</b><span>מימין לשמאל, מהיסוד</span></div><div><b>בכל מסך</b><span>מחשב, טאבלט וטלפון</span></div><div><b>במקום אחד</b><span>תיקים, יומן, לקוחות וגבייה</span></div></div>')
+   +lawQuote()+'</div>';
+  var per=X.sys==='study'?[['student','סטודנט'],['intern','מתמחה']]:[['lawyer','עורך דין']];
+  if(per.map(function(p){return p[0];}).indexOf(X.per)<0)X.per=per[0][0];
+  var form='<div class="pk9e-card"><div class="pk9e-ch"><span class="k">פרקליט · '+S.n+'</span><h2>'+(login?greet()+', ברוכים השבים':'פותחים חשבון')+'</h2><p>'+(login?'נכנסים וממשיכים בדיוק מאיפה שעצרת':'שתי דקות, ואת/ה בפנים')+'</p></div>'
+   +'<div class="pk9e-tabs"><button class="'+(login?'on':'')+'" onclick="PK9E.tabTo(\'login\')">כניסה</button><button class="'+(!login?'on':'')+'" onclick="PK9E.tabTo(\'signup\')">הרשמה</button></div>'
+   +(X.err?'<div class="pk9e-err">'+E(X.err)+'</div>':'')
+   +(login?'':'<label class="pk9e-f"><span>'+sv('id')+'</span><input id="pk9eN" placeholder=" " autocomplete="name"><i>שם מלא</i></label>'
+     +'<div class="pk9e-per">'+per.map(function(p){return '<button class="'+(X.per===p[0]?'on':'')+'" onclick="PK9E.per=\''+p[0]+'\';PK9E.draw()">'+p[1]+'</button>';}).join('')+'</div>')
+   +'<label class="pk9e-f"><span>'+sv('user')+'</span><input id="pk9eU" placeholder=" " autocomplete="username" oninput="PK9E.chk()"><i>שם משתמש</i><b class="ok" id="pk9eUok">✓</b></label>'
+   +'<label class="pk9e-f"><span>'+sv('lock')+'</span><input id="pk9eP" type="password" placeholder=" " autocomplete="'+(login?'current-password':'new-password')+'" onkeydown="PK9E.caps(event);if(event.key===\'Enter\')PK9E.go()" onkeyup="PK9E.caps(event)" oninput="PK9E.chk()"><i>סיסמה</i><button class="eye" type="button" onclick="var i=document.getElementById(\'pk9eP\');i.type=i.type===\'password\'?\'text\':\'password\'" title="הצגת סיסמה">'+sv('eye')+'</button></label><div class="pk9e-caps" id="pk9eCaps">⇪ מקש Caps Lock פעיל</div>'+(login?'':'<div class="pk9e-str" id="pk9eStr"><i></i><i></i><i></i><i></i><span>חוזק הסיסמה</span></div>')
+   +(login?'<div class="pk9e-row"><label><input type="checkbox" checked> לזכור אותי</label><a onclick="PK9E.forgot()">שכחתי סיסמה</a></div>':'')
+   +'<button class="pk9e-go" id="pk9eGo" onclick="PK9E.go()"><span class="t">'+(login?S.cta:'יצירת חשבון ב'+S.n)+'</span><span class="sp"></span><span class="ar">←</span></button>'
+   +(true?'<div class="pk9e-trust"><span>🔒 פרטי לגמרי</span><span>📱 מחשב, טאבלט וטלפון</span><span>✦ בעברית מהיסוד</span></div>':'<div class="pk9e-or"><span>או בלי הרשמה</span></div>')
+   +(true?'':'<div class="pk9e-demo">'+(X.sys==='study'?'<button onclick="PK9.enter(\'study\',\'student\')">כניסה לדמו כסטודנט</button><button onclick="PK9.enter(\'study\',\'intern\')">כניסה לדמו כמתמחה</button>':'<button onclick="PK9.enter(\'firm\',\'lawyer\')">כניסה לדמו של המשרד</button>')+'</div>')
+   +'<div class="pk9e-ft">הנתונים שלך פרטיים ונשמרים במכשיר · <a>תקנון ופרטיות</a></div></div>';
+  var seal='<div class="pk9e-stage"><div class="pk9e-glow"></div><svg class="pk9e-seal" viewBox="0 0 600 600"><defs><path id="pk9eC" d="M300,300 m-262,0 a262,262 0 1,1 524,0 a262,262 0 1,1 -524,0"/><linearGradient id="pk9eG" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#F1D78E"/><stop offset="1" stop-color="#9E7A2C"/></linearGradient></defs>'+'<circle cx="300" cy="300" r="292" class="r1"/><circle cx="300" cy="300" r="236" class="r2"/><circle cx="300" cy="300" r="226" class="r3"/>'+(function(){ var t=''; for(var i=0;i<72;i++){ var a=i*5*Math.PI/180, r1=i%6?284:276; t+='<line x1="'+(300+Math.cos(a)*r1).toFixed(1)+'" y1="'+(300+Math.sin(a)*r1).toFixed(1)+'" x2="'+(300+Math.cos(a)*292).toFixed(1)+'" y2="'+(300+Math.sin(a)*292).toFixed(1)+'" class="tk"/>'; } return t; })()+'<g class="spin"><text text-anchor="middle"><textPath href="#pk9eC" startOffset="50%">פרקליט ✦ מהסטודנט ועד הפרקליט ✦ לימודים ✦ משרד ✦ פרקליט ✦ מהסטודנט ועד הפרקליט ✦ לימודים ✦ משרד ✦</textPath></text></g></svg><div class="pk9e-rays"></div><div class="pk9e-dots"></div></div>';
+  seal=seal.replace('<g class="spin">','<g class="spin2"><circle cx="300" cy="300" r="206" class="r4"/>'+(function(){ var t=''; for(var i=0;i<4;i++){ var a=i*Math.PI/2; t+='<text x="'+(300+Math.cos(a)*206).toFixed(1)+'" y="'+(300+Math.sin(a)*206+6).toFixed(1)+'" class="mk" text-anchor="middle">§</text>'; } return t; })()+'</g><g class="spin">');
+  return '<div class="pk9e-in">'+brand+'<div class="pk9e-side">'+seal+form+'</div></div>'; }
+
+X.draw=function(){ var g=document.getElementById('pk9Gate'); var u=(document.getElementById('pk9eU')||{}).value||'', n=(document.getElementById('pk9eN')||{}).value||''; g.innerHTML=html(); var a=document.getElementById('pk9eU'); if(a)a.value=u; var b=document.getElementById('pk9eN'); if(b)b.value=n; };
+X.set=function(k){ X.sys=k; X.err=''; LS.s('pk9_sys',k); X.draw(); };
+X.tabTo=function(t){ X.tab=t; X.err=''; X.draw(); };
+X.forgot=function(){ X.err='לאיפוס סיסמה פונים למנהל המערכת.'; X.draw(); };
+X.caps=function(e){ var c=document.getElementById('pk9eCaps'); if(c&&e.getModifierState)c.classList.toggle('in',e.getModifierState('CapsLock')); };
+X.chk=function(){ var u=document.getElementById('pk9eU'), ok=document.getElementById('pk9eUok'); if(u&&ok)ok.classList.toggle('in',u.value.trim().length>=3);
+  var st=document.getElementById('pk9eStr'), p=document.getElementById('pk9eP'); if(st&&p){ var v=p.value, n=0; if(v.length>=4)n++; if(v.length>=8)n++; if(/\d/.test(v)&&/[^\d]/.test(v))n++; if(/[^A-Za-z0-9\u0590-\u05FF]/.test(v)||/[A-Z]/.test(v))n++; st.dataset.n=v?n:0; st.querySelector('span').textContent=!v?'חוזק הסיסמה':['חלשה מאוד','חלשה','סבירה','טובה','חזקה'][n]; } };
+X.go=function(){
+  var user=((document.getElementById('pk9eU')||{}).value||'').trim(), pw=(document.getElementById('pk9eP')||{}).value||'', a=load(), err=null;
+  if(X.tab==='login'){
+    var u=byName(a,user);
+    if(!u)err='שם המשתמש אינו קיים';else if(u.pass!==hashPass(pw))err='סיסמה שגויה';else if(u.role!=='admin'&&u.sub&&u.sub.status==='suspended')err='החשבון מושעה. נא לפנות למנהל המערכת.';else a.session=u.id;
+  }else{
+    if(user.length<3)err='שם משתמש קצר מדי (לפחות 3 תווים)';else if(pw.length<4)err='סיסמה קצרה מדי (לפחות 4 תווים)';else if(byName(a,user))err='שם המשתמש כבר תפוס';
+    else{var nm=((document.getElementById('pk9eN')||{}).value||'').trim();var n={id:uid(),user:user,name:nm||user,pass:hashPass(pw),role:'student',persona:X.per,created:Date.now(),sub:{status:'trial',plan:'חודשי',paidUntil:Date.now()+14*864e5}};a.users.push(n);a.session=n.id;}
+  }
+  if(!err&&!save(a))err='לא ניתן לשמור במכשיר (גלישה פרטית חוסמת שמירה?)';
+  if(err){X.err=err;X.draw();return;}
+  LS.s('pk9_sys',X.sys); var b=document.getElementById('pk9eGo'); if(b)b.querySelector('.t').textContent='נכנסים…';
+  location.replace('app.html');
+};
+try{var a0=load();if(a0.session&&a0.users.some(function(u){return u.id===a0.session;})&&location.search.indexOf('stay=1')<0){location.replace('app.html');return;}}catch(e){}
+X.draw();
 })();
 </script>
 </body>
