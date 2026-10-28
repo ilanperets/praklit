@@ -69,3 +69,6 @@ body.pk4 #content .cl6 .cl6-s input,body #content .cl6 .cl6-s input{border:0!imp
 
 .l5-tab.pkn-lock,.tab.pkn-lock{opacity:.6;cursor:not-allowed}
 .pkn-soon{margin-inline-start:6px;padding:1px 7px;font-size:10px;font-style:normal;font-weight:600;color:#8a6a24;background:rgba(184,145,60,.16);border-radius:10px}
+
+.pkn-sec{margin-top:10px;background:rgba(184,145,60,.14)!important;border:1px solid rgba(184,145,60,.5)!important;color:#6b4d12!important}
+.pkn-flash{animation:pknf 3.5s ease}@keyframes pknf{0%,60%{background:rgba(184,145,60,.35)}100%{background:transparent}}

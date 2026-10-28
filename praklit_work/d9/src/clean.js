@@ -133,7 +133,7 @@
    var cc=v.querySelector('.st7-cg'); var target=cc&&cc.closest('.st7-card'); if(target)target.parentNode.insertBefore(card,target); else v.appendChild(card);
   }catch(e){}
  }
- var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();books();dash();law();lawIdx();today();ready();polish();lockPod();},120); }).observe(document.documentElement,{childList:true,subtree:true});
+ var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();books();dash();law();lawIdx();today();ready();polish();lockPod();secLinks();},120); }).observe(document.documentElement,{childList:true,subtree:true});
 
  /* ליטוש מסכים: חזרה יומית, מחברת ריקה, כותרת כפולה בכלים, יומן, ספרייה */
  var THIN=['דיני בנקאות','קניין רוחני','משפט בינלאומי','ירושה ועיזבון','הוצאה לפועל','משפט מסחרי','אתיקה מקצועית'];
@@ -160,6 +160,17 @@
  function lockPod(){ document.querySelectorAll('.l5-tabs .l5-tab,.tabs .tab').forEach(function(b){ if(b.dataset.pks)return; if(/setTab\(['"]podcast['"]\)/.test(b.getAttribute('onclick')||'')){ b.dataset.pks=1; b.classList.add('pkn-lock'); var e=document.createElement('em'); e.className='pkn-soon'; e.textContent='🔒 בקרוב'; b.appendChild(e); } });
   try{ if(typeof STATE!=='undefined'&&STATE.lessonTab==='podcast'&&typeof setTab==='function')setTab('summary'); }catch(e){} }
  var _ST=window.setTab; if(typeof _ST==='function'&&!_ST.__pkc){ window.setTab=function(t){ if(t==='podcast'){ try{ (window.PK9&&PK9.toast)?PK9.toast('הפודקאסט יהיה זמין בקרוב'):0; }catch(e){} return; } return _ST.apply(this,arguments); }; window.setTab.__pkc=1; }
+
+ /* טעות בתרגול -> קישור לסעיף המתאים בשיעור */
+ var STOPW=' של על את עם אם לא כי או גם הוא היא הם זה זו אשר כל מה מי אל מן לפי כדי היה היו יהיה'.split(' ');
+ function toks(t){ return String(t||'').replace(/<[^>]+>/g,' ').replace(/[^א-ת0-9\s]/g,' ').split(/\s+/).filter(function(w){return w.length>=3&&STOPW.indexOf(w)<0;}); }
+ window.pkGoSec=function(subj,idx,txt){ try{ bmOpen(subj,idx); }catch(e){ return; }
+  setTimeout(function(){ try{ var hs=[].slice.call(document.querySelectorAll('#content h3')); if(!hs.length)return; var q=toks(txt), best=null, bs=0;
+   hs.forEach(function(h){ var t=h.textContent, n=h.nextElementSibling; var k=0; while(n&&n.tagName!=='H3'&&k<40){ t+=' '+n.textContent; n=n.nextElementSibling; k++; } var set={}; toks(t).forEach(function(w){set[w]=1;}); var sc=0; q.forEach(function(w){ if(set[w])sc++; }); if(sc>bs){bs=sc;best=h;} });
+   if(best&&bs>=2){ best.scrollIntoView({behavior:'smooth',block:'start'}); best.classList.add('pkn-flash'); setTimeout(function(){best.classList.remove('pkn-flash');},3500); } }catch(e){} },350); };
+ function secLinks(){ try{ if(typeof EX==='undefined'||!EX||!EX.questions)return;
+   var fb=document.querySelector('.pr-fb.no'); if(fb&&!fb.querySelector('.pkn-sec')){ var q=EX.questions[EX.i]; if(q&&q.subj!=null&&q.idx!=null){ var a=document.createElement('button'); a.className='btn sm pkn-sec'; a.textContent='📖 חזרה לחומר בשיעור'; a.onclick=function(){ pkGoSec(q.subj,q.idx,q.q+' '+q.options[q.correct]+' '+(q.explain||'')); }; fb.appendChild(a); } }
+   document.querySelectorAll('.ex-rev').forEach(function(r,i){ var q=EX.questions[i]; if(!q||r.querySelector('.pkn-sec')||!r.querySelector('.ans.no'))return; if(q.subj==null||q.idx==null)return; var a=document.createElement('button'); a.className='btn sm pkn-sec'; a.textContent='📖 חזרה לחומר בשיעור'; a.onclick=function(){ pkGoSec(q.subj,q.idx,q.q+' '+q.options[q.correct]+' '+(q.explain||'')); }; r.appendChild(a); }); }catch(e){} }
  function fixLessons(){ try{ SUBJECTS.forEach(function(s){ var t=LESSON_TOPICS&&LESSON_TOPICS[s.id]; if(t&&t.length&&s.lessons>t.length)s.lessons=t.length; }); }catch(e){} }
  var _R=window.render; if(typeof _R==='function'&&!_R.__pkc){ window.render=function(){ fixLessons(); return _R.apply(this,arguments); }; window.render.__pkc=1; }
  fixLessons(); badges(); rm();
