@@ -98,7 +98,24 @@
   try{ document.querySelectorAll('.ix6-c').forEach(function(c){ if(c.getAttribute('data-pkx'))return; c.setAttribute('data-pkx','1');
     var m=c.textContent.match(/(\d+)\s*סעיפים/); if(m&&+m[1]<3){ var h=c.querySelector('div,span'); var t=document.createElement('em'); t.className='pk-ixprep'; t.textContent='בהכנה'; c.insertBefore(t,c.firstChild); } }); }catch(e){}
  }
- var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();books();dash();law();lawIdx();},120); }).observe(document.documentElement,{childList:true,subtree:true});
+
+ /* תרגול חכם: כפתור אחד שבוחר מה לתרגל היום */
+ function today(){
+  try{
+   var body=document.querySelector('.h6-body'); var tabs=document.querySelector('.h6-tabs .on');
+   if(!body||!tabs||!/סימולטור בחינה/.test(tabs.textContent))return;
+   var host=body.querySelector('.view')||body; if(document.getElementById('pkToday'))return;
+   var st=srsStats(), weak=(STATE.wrongQ||[]).length, due=st.due||0, nu=Math.min(5,st.nu||0);
+   var tot=Math.min(24,due+Math.min(weak,12)+nu); if(!tot)tot=Math.min(10,st.total||10); var mins=Math.max(5,Math.round(tot*0.85));
+   var ex=(STATE.exams||[]).filter(function(e){return daysUntil(e.date)>=0;}).sort(function(a,b){return new Date(a.date)-new Date(b.date);})[0];
+   var d=document.createElement('div'); d.id='pkToday'; d.className='pk-today';
+   d.innerHTML='<div class="tx"><small>התרגול של היום</small><b>'+mins+' דקות · '+tot+' שאלות</b><span>'+(ex?'המערכת בחרה לפי הטעויות, כרטיסי החזרה ותאריך הבחינה (בעוד '+daysUntil(ex.date)+' ימים)':'המערכת בחרה לפי הטעויות וכרטיסי החזרה שלך')+'</span>'
+    +'<div class="ch">'+(weak?'<i>'+Math.min(weak,12)+' מהטעויות שלי</i>':'')+(due?'<i>'+due+' כרטיסי חזרה</i>':'')+(nu?'<i>'+nu+' שאלות חדשות</i>':'')+'</div></div>'
+    +'<button class="q6-ap" onclick="srsStart()">התחל תרגול ←</button>';
+   host.insertBefore(d,host.firstChild);
+  }catch(e){}
+ }
+ var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();books();dash();law();lawIdx();today();},120); }).observe(document.documentElement,{childList:true,subtree:true});
  function fixLessons(){ try{ SUBJECTS.forEach(function(s){ var t=LESSON_TOPICS&&LESSON_TOPICS[s.id]; if(t&&t.length&&s.lessons>t.length)s.lessons=t.length; }); }catch(e){} }
  var _R=window.render; if(typeof _R==='function'&&!_R.__pkc){ window.render=function(){ fixLessons(); return _R.apply(this,arguments); }; window.render.__pkc=1; }
  fixLessons(); badges(); rm();

@@ -41,3 +41,9 @@
 .cl6-s input{border:0!important;background:transparent!important;box-shadow:none!important;outline:0}
 .ix6-c{position:relative}.pk-ixprep{position:absolute;top:10px;left:44px;font-style:normal;font-size:11px;color:#8A6A17;background:#F3E9CB;border-radius:6px;padding:2px 8px}
 body.pk4 #content .cl6 .cl6-s input,body #content .cl6 .cl6-s input{border:0!important;background:transparent!important;box-shadow:none!important;outline:0!important;border-radius:0!important}
+
+.pk-today{display:flex;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(135deg,#6B1830,#2a0a12);color:#fff;border-radius:20px;padding:22px 26px;margin:20px 0 18px;box-shadow:0 18px 30px -22px #3a1018}
+.pk-today .tx{display:flex;flex-direction:column;gap:5px}.pk-today small{color:#E5C77A;letter-spacing:2px;font-size:12px}
+.pk-today b{font-size:26px;font-weight:600}.pk-today span{color:#e9d9dd;font-size:13.5px}
+.pk-today .ch{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.pk-today .ch i{font-style:normal;font-size:12px;font-weight:700;color:#F3E3B5;border:1px solid #ffffff33;background:#ffffff14;border-radius:999px;padding:4px 12px}
+.pk-today .q6-ap{white-space:nowrap}
