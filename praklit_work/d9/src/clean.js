@@ -115,7 +115,25 @@
    host.insertBefore(d,host.firstChild);
   }catch(e){}
  }
- var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();books();dash();law();lawIdx();today();},120); }).observe(document.documentElement,{childList:true,subtree:true});
+
+ /* מוכנות לבחינה בלוח הבקרה */
+ function ready(){
+  try{
+   var v=document.querySelector('#content .st7'); if(!v||v.querySelector('#pkReady'))return;
+   var courses=[].slice.call(v.querySelectorAll('.st7-cc')).map(function(b){var m=(b.getAttribute('onclick')||'').match(/openCourse\('([^']+)'\)/);return m&&SUBJECTS.find(function(x){return x.id===m[1];});}).filter(Boolean);
+   var ex=(STATE.exams||[]).filter(function(e){return daysUntil(e.date)>=0;});
+   ex.forEach(function(e){var s=SUBJECTS.find(function(x){return x.id===e.subject;}); if(s&&courses.indexOf(s)<0)courses.unshift(s);});
+   var rows=courses.map(function(s){var e=ex.filter(function(x){return x.subject===s.id;}).sort(function(a,b){return new Date(a.date)-new Date(b.date);})[0]; return {s:s,r:pk6Ready(s),d:e?daysUntil(e.date):null};}).filter(function(x){return x.r>0||x.d!==null;});
+   if(!rows.length)return;
+   rows.sort(function(a,b){return (a.d===null)-(b.d===null)||(a.d||0)-(b.d||0)||a.r-b.r;}); rows=rows.slice(0,4);
+   var col=function(r){return r>=75?'#C9A24A':r>=45?'#7B1230':'#B0283F';};
+   var card=document.createElement('div'); card.id='pkReady'; card.className='st7-card pkr';
+   card.innerHTML='<h3>המוכנות שלך לבחינה</h3><div class="st7-sub">מחושבת מכמה חומר כיסית ומדיוק התשובות שלך בתרגול</div><div class="pkr-g">'
+    +rows.map(function(x){return '<button class="pkr-i" onclick="openCourse(\''+x.s.id+'\')"><span class="ring" style="background:conic-gradient('+col(x.r)+' 0 '+x.r+'%,#EFE7D6 0)"><i>'+x.r+'%</i></span><b>'+x.s.name+'</b><small>'+(x.d===null?'ללא תאריך בחינה':x.d===0?'הבחינה היום':'בחינה בעוד '+x.d+' ימים')+'</small></button>';}).join('')+'</div>';
+   var cc=v.querySelector('.st7-cg'); var target=cc&&cc.closest('.st7-card'); if(target)target.parentNode.insertBefore(card,target); else v.appendChild(card);
+  }catch(e){}
+ }
+ var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();books();dash();law();lawIdx();today();ready();},120); }).observe(document.documentElement,{childList:true,subtree:true});
  function fixLessons(){ try{ SUBJECTS.forEach(function(s){ var t=LESSON_TOPICS&&LESSON_TOPICS[s.id]; if(t&&t.length&&s.lessons>t.length)s.lessons=t.length; }); }catch(e){} }
  var _R=window.render; if(typeof _R==='function'&&!_R.__pkc){ window.render=function(){ fixLessons(); return _R.apply(this,arguments); }; window.render.__pkc=1; }
  fixLessons(); badges(); rm();

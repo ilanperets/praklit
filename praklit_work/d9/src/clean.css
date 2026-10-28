@@ -47,3 +47,9 @@ body.pk4 #content .cl6 .cl6-s input,body #content .cl6 .cl6-s input{border:0!imp
 .pk-today b{font-size:26px;font-weight:600}.pk-today span{color:#e9d9dd;font-size:13.5px}
 .pk-today .ch{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.pk-today .ch i{font-style:normal;font-size:12px;font-weight:700;color:#F3E3B5;border:1px solid #ffffff33;background:#ffffff14;border-radius:999px;padding:4px 12px}
 .pk-today .q6-ap{white-space:nowrap}
+
+.pkr-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:14px}
+.pkr-i{display:flex;flex-direction:column;align-items:center;gap:4px;border:1px solid #EFE7D6;background:#FBF6EA;border-radius:16px;padding:16px 10px;cursor:pointer;font-family:inherit}
+.pkr-i .ring{width:84px;height:84px;border-radius:50%;display:grid;place-items:center}
+.pkr-i .ring i{font-style:normal;background:#fff;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:19px;color:#5B1226}
+.pkr-i b{font-size:14px;color:#2a1a14;margin-top:4px}.pkr-i small{font-size:12px;color:#7a6a58}
