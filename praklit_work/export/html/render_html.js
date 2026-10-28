@@ -63,7 +63,8 @@ function inner(blocks,cap){ return blocks.map(x=>x.k==='p'?`<p>${runs(cap?short(
 function tbl(rows){ return `<table>${rows.map(r=>`<tr>${r.c.map(c=>`<${r.h?'th':'td'}>${runs(c)}</${r.h?'th':'td'}>`).join('')}</tr>`).join('')}</table>`; }
 function chap(l,sub){ return `<div class=ch><div class=no>${String(l.n).padStart(2,'0')}</div><div><div class=tt>${esc(l.title)}</div>${sub?`<div class=sub>${sub}</div>`:''}</div></div>`; }
 function h2(r){ const t=txt(r); const m=t.match(/^(\d+)\.\s*(.*)$/); return `<h2>${m?`<span class=n>${m[1]}</span>`:''}${esc(m?m[2]:t)}</h2>`; }
-function tree(t){ if(!t||!t.options)return ''; return `<h3>מפת החלטה: ${esc(t.q)}</h3>`+tbl([{h:true,c:[[{t:'אם...'}],[{t:'התוצאה'}],[{t:'הערה'}]]},...t.options.map(o=>({h:false,c:[[{t:o.label}],[{t:o.child.result,b:true}],[{t:o.child.note||''}]]}))]); }
+function leaves(n,path,out){ if(!n)return out; if(n.result!==undefined){ out.push({p:path,r:n.result,n:n.note||''}); return out; } (n.options||[]).forEach(o=>leaves(o.child,path.concat([o.label]),out)); return out; }
+function tree(t){ if(!t||!t.options)return ''; const L=leaves(t,[],[]); if(!L.length)return ''; return `<h3>מפת החלטה: ${esc(t.q)}</h3>`+tbl([{h:true,c:[[{t:'אם...'}],[{t:'התוצאה'}],[{t:'הערה'}]]},...L.map(x=>({h:false,c:[[{t:x.p.join(' ← ')}],[{t:x.r,b:true}],[{t:x.n}]]}))]); }
 function caseCard(c){ return `<div class=case><div class=hd>${esc(c.name)}${c.tag?`<small>${esc(c.tag)}</small>`:''}</div>${c.bg&&c.bg.length?`<div class=rw><div>הרקע</div><div>${runs(c.bg)}</div></div>`:''}${c.hold&&c.hold.length?`<div class=rw><div>${c.note?'עיקר':'ההלכה'}</div><div>${runs(c.hold)}</div></div>`:''}</div>`; }
 function summaryBody(){ let o=''; L.forEach((l,i)=>{ o+=`<div class="${i?'pb':''}">${chap(l,'פרק '+l.n)}`;
   if(l.keypts.length)o+=`<div class="bx key"><div class=lbl>במבט על · נקודות מפתח</div>${list({k:'ul',items:l.keypts.map(k=>({lvl:0,r:k.r||k}))})}</div>`;
