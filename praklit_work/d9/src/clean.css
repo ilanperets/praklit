@@ -59,3 +59,13 @@ body.pk4 #content .cl6 .cl6-s input,body #content .cl6 .cl6-s input{border:0!imp
 .pk9b-stats>div b{font-size:20px;color:#5a1a28}
 .pk9b-stats>div span{font-size:12px;color:#7a6a5a}
 .pk9b-stats p{margin:0;font-size:12px;color:#7a6a5a;flex:1;min-width:200px}
+
+.pkn-empty{text-align:center;padding:42px 20px;margin:14px 0;background:#fff;border:1px dashed rgba(184,145,60,.5);border-radius:16px}
+.pkn-empty .ic{font-size:34px;margin-bottom:6px}.pkn-empty h3{margin:0 0 6px;font-size:20px;color:#3a1018}
+.pkn-empty p{margin:0 auto 16px;max-width:420px;color:#7a6a5a;font-size:14px}.pkn-empty .ac{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.pkn-hint{margin:10px 0 0;font-size:12.5px;color:#7a6a5a;text-align:center}
+.pkn-prep{display:inline-block;margin-inline-start:8px;padding:1px 8px;font-size:10.5px;font-style:normal;font-weight:600;color:#8a6a24;background:rgba(184,145,60,.14);border-radius:10px;vertical-align:middle}
+.pkn-new{font-size:12px!important;color:#9a8a78!important;font-weight:400!important}
+
+.l5-tab.pkn-lock,.tab.pkn-lock{opacity:.6;cursor:not-allowed}
+.pkn-soon{margin-inline-start:6px;padding:1px 7px;font-size:10px;font-style:normal;font-weight:600;color:#8a6a24;background:rgba(184,145,60,.16);border-radius:10px}

@@ -133,7 +133,33 @@
    var cc=v.querySelector('.st7-cg'); var target=cc&&cc.closest('.st7-card'); if(target)target.parentNode.insertBefore(card,target); else v.appendChild(card);
   }catch(e){}
  }
- var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();books();dash();law();lawIdx();today();ready();},120); }).observe(document.documentElement,{childList:true,subtree:true});
+ var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();books();dash();law();lawIdx();today();ready();polish();lockPod();},120); }).observe(document.documentElement,{childList:true,subtree:true});
+
+ /* ליטוש מסכים: חזרה יומית, מחברת ריקה, כותרת כפולה בכלים, יומן, ספרייה */
+ var THIN=['דיני בנקאות','קניין רוחני','משפט בינלאומי','ירושה ועיזבון','הוצאה לפועל','משפט מסחרי','אתיקה מקצועית'];
+ function polish(){ var body=document.querySelector('.h6-body'); if(!body)return;
+  var rs=body.querySelector('.rv-stats');
+  if(rs&&!rs.dataset.pkp){ rs.dataset.pkp=1; var due=parseInt((rs.querySelector('.rv-due .v')||{}).textContent,10)||0; var card=rs.nextElementSibling;
+   if(!due&&card&&/כרטיסים מחכים/.test(card.textContent)){ var p=card.querySelector('p'), b=card.querySelector('button'); var tot=(card.textContent.match(/\d[\d,]*/)||[''])[0];
+    if(p)p.innerHTML='<b>סיימת את החזרות להיום.</b><br><span style="color:#7a6a5a">אפשר להתקדם ולהתחיל ללמוד כרטיסים חדשים מהמאגר ('+tot+' כרטיסים).</span>'; if(b)b.textContent='▶ למד כרטיסים חדשים'; }
+   var q=rs.parentNode.querySelectorAll('p'); q.forEach(function(x){ if(x.textContent.indexOf('יותr')>=0)x.textContent=x.textContent.replace('יותr','יותר'); }); }
+  var nw=body.querySelector('.nb-wrap');
+  if(nw){ var empty=/אין סיכומים/.test((nw.querySelector('.nb-list')||{}).textContent||'');
+   var ex=body.querySelector('.pkn-empty');
+   if(empty&&!ex){ nw.style.display='none'; var d=document.createElement('div'); d.className='pkn-empty'; d.innerHTML='<div class="ic">📓</div><h3>המחברת שלך ריקה</h3><p>כל סיכום, הערה או חומר שתוסיף יישמרו כאן, מסודרים לפי קורס ושנה.</p><div class="ac"><button class="btn gold" data-a="new">+ סיכום חדש</button><button class="btn" data-a="up">📎 העלה חומרים</button></div>'; nw.parentNode.insertBefore(d,nw);
+    d.addEventListener('click',function(e){ var a=e.target.getAttribute&&e.target.getAttribute('data-a'); if(!a)return; var bs=[].slice.call(body.querySelectorAll('button')); var t=bs.find(function(x){return !x.closest('.pkn-empty')&&(a==='new'?/\+ סיכום חדש/.test(x.textContent):/העלה חומרים/.test(x.textContent));}); if(t)t.click(); }); }
+   if(!empty&&ex){ ex.remove(); nw.style.display=''; } }
+ 
+ body.querySelectorAll('h2.section').forEach(function(h){ var t=h.textContent.trim(); var hh=document.querySelector('.h6-ttl h1'); if(hh&&t===hh.textContent.trim()&&!h.closest('.cl6'))h.style.display='none'; });
+  body.querySelectorAll('.pd-card').forEach(function(c){ if(c.dataset.pkp)return; if(/השבוע שלי/.test(c.textContent)&&/\b0\s*דק/.test(c.textContent)){ c.dataset.pkp=1; var h=document.createElement('p'); h.className='pkn-hint'; h.textContent='התחל את הטיימר כדי לראות כאן את ההתקדמות השבועית שלך.'; c.appendChild(h); } });
+  body.querySelectorAll('.l4-row.l4-it').forEach(function(r){ if(r.dataset.pkp)return; r.dataset.pkp=1; var tx=r.textContent;
+   if(THIN.some(function(n){return tx.indexOf(n)>=0;})){ var tg=document.createElement('em'); tg.className='pkn-prep'; tg.textContent='בהכנה'; var h=r.querySelector('b,strong,.l4-t,h3')||r.children[1]||r; h.appendChild(tg); }
+   r.querySelectorAll('*').forEach(function(x){ if(!x.children.length&&x.textContent.trim()==='0%'){ x.textContent='טרם התחלת'; x.className+=' pkn-new'; } }); });
+ }
+
+ function lockPod(){ document.querySelectorAll('.l5-tabs .l5-tab,.tabs .tab').forEach(function(b){ if(b.dataset.pks)return; if(/setTab\(['"]podcast['"]\)/.test(b.getAttribute('onclick')||'')){ b.dataset.pks=1; b.classList.add('pkn-lock'); var e=document.createElement('em'); e.className='pkn-soon'; e.textContent='🔒 בקרוב'; b.appendChild(e); } });
+  try{ if(typeof STATE!=='undefined'&&STATE.lessonTab==='podcast'&&typeof setTab==='function')setTab('summary'); }catch(e){} }
+ var _ST=window.setTab; if(typeof _ST==='function'&&!_ST.__pkc){ window.setTab=function(t){ if(t==='podcast'){ try{ (window.PK9&&PK9.toast)?PK9.toast('הפודקאסט יהיה זמין בקרוב'):0; }catch(e){} return; } return _ST.apply(this,arguments); }; window.setTab.__pkc=1; }
  function fixLessons(){ try{ SUBJECTS.forEach(function(s){ var t=LESSON_TOPICS&&LESSON_TOPICS[s.id]; if(t&&t.length&&s.lessons>t.length)s.lessons=t.length; }); }catch(e){} }
  var _R=window.render; if(typeof _R==='function'&&!_R.__pkc){ window.render=function(){ fixLessons(); return _R.apply(this,arguments); }; window.render.__pkc=1; }
  fixLessons(); badges(); rm();
