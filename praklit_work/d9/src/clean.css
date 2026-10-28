@@ -53,3 +53,9 @@ body.pk4 #content .cl6 .cl6-s input,body #content .cl6 .cl6-s input{border:0!imp
 .pkr-i .ring{width:84px;height:84px;border-radius:50%;display:grid;place-items:center}
 .pkr-i .ring i{font-style:normal;background:#fff;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:19px;color:#5B1226}
 .pkr-i b{font-size:14px;color:#2a1a14;margin-top:4px}.pkr-i small{font-size:12px;color:#7a6a58}
+
+.pk9b-stats{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:4px 0 14px;padding:10px 12px;background:rgba(184,145,60,.08);border:1px solid rgba(184,145,60,.25);border-radius:12px}
+.pk9b-stats>div{display:flex;align-items:baseline;gap:6px;padding:0 10px;border-inline-end:1px solid rgba(184,145,60,.3)}
+.pk9b-stats>div b{font-size:20px;color:#5a1a28}
+.pk9b-stats>div span{font-size:12px;color:#7a6a5a}
+.pk9b-stats p{margin:0;font-size:12px;color:#7a6a5a;flex:1;min-width:200px}

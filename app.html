@@ -41237,9 +41237,30 @@ function cardsHtml(m){ var T=(m.a.terms||[]); if(!T.length)return '<div class="p
    +(cur?'<div class="pk9b-flip'+(B.ff?' on':'')+'" onclick="PK9B.ff=!PK9B.ff;PK9B.paint()"><div class="a"><span>מונח</span><b>'+E(cur.t)+'</b><em>לוחצים כדי להפוך</em></div><div class="b"><span>'+E(cur.t)+'</span><p>'+E(cur.d)+'</p></div></div>'
      +'<div class="pk9b-fact"><button class="no" onclick="PK9B.fc(0)">עוד לא ידעתי</button><button class="yes" onclick="PK9B.fc(1)">ידעתי ✓</button></div>':'<div class="pk9b-done">🎉 עברת על כל המונחים!<button class="pk9-btn ghost" onclick="localStorage.removeItem(\''+K+'\');PK9B.fq=null;PK9B.paint()">להתחיל מחדש</button></div>')+'</div>'; }
 B.fc=function(y){ var m=mat(); if(!m)return; var T=m.a.terms, K='pk9_fc_'+m.id, S=LS.g(K,{}); var i=B.fq.shift(); S[T[i].t]=y?'y':'n'; LS.s(K,S); if(!y)B.fq.push(i); B.ff=false; B.paint(); };
-var TOOLS=[['levels','סיכום בשלוש רמות','משפט, פסקה או מלא — לפי כמה זמן יש','≡'],['cmp','השוואה בין נושאים','טבלה שמעמידה נושאים זה מול זה','⇄'],['open','שאלות פתוחות','כותבים תשובה ובודקים מה חסר בה','✎'],['cards','כרטיסיות חזרה','מונח מול הגדרה, עד שהכל ידוע','▣'],['map','מפת נושאים','כל הנושאים והקשרים במבט אחד','◎'],['gloss','מילון מושגים','כל ההגדרות מהחומר, לפי א-ב','א'],['listen','האזנה','המערכת מקריאה את עיקרי החומר','♪'],['sheet','דף למבחן','עמוד אחד מרוכז להדפסה','▤'],['gaps','מה חסר לך','מה החומר מכסה מתוך נושאי הקורס','◔']];
-function toolsHtml(m){ return '<div class="pk9b-card"><div class="pk9b-row"><div><div class="pk9-k">המוח שלי · כלים חכמים</div><h3>מה נעשה עם "'+E(m.name)+'"?</h3></div><span class="mut">הכל נבנה מתוך החומר שלך, בלי שרת, ונשאר רק אצלך</span></div><div class="pk9b-tools">'
-  +TOOLS.map(function(t,k){return '<button onclick="PK9B.set(\''+t[0]+'\')"><span class="ic">'+t[3]+'</span><b>'+t[1]+(k<4?'<i class="pk9b-new">חדש</i>':'')+'</b><em>'+t[2]+'</em></button>';}).join('')+'</div></div>'; }
+var TOOLS=[['levels','סיכום בשלוש רמות','משפט, פסקה או מלא — לפי כמה זמן יש','≡'],['map','מפת נושאים','כל הנושאים והקשרים במבט אחד','◎'],['gloss','מילון מושגים','כל ההגדרות מהחומר, לפי א-ב','א'],['listen','האזנה','המערכת מקריאה את עיקרי החומר','♪'],['sheet','דף למבחן','עמוד אחד מרוכז להדפסה','▤'],['gaps','מה חסר לך','מה החומר מכסה מתוך נושאי הקורס','◔']];
+function statsHtml(m){ var T=(m.a.topics||[]), n=T.length, tm=(m.a.terms||[]).length, sc={}; T.forEach(function(t){ ((t.refs&&t.refs.secs)||[]).forEach(function(x){sc[x]=1;}); });
+  return '<div class="pk9b-stats"><div><b>'+n+'</b><span>נושאים זוהו</span></div><div><b>'+tm+'</b><span>מונחים</span></div><div><b>'+Object.keys(sc).length+'</b><span>סעיפי חוק</span></div><p>הכלים מסדרים ומדגישים את מה שכתוב בחומר שלך. ניתוח עמוק עם בינה מלאכותית יתווסף בשלב הבא.</p></div>'; }
+
+/* ---------- שאלות תרגול משופרות (מסיחים דומים, בלי חיתוך ובלי רמזים) ---------- */
+function qClean(d){ d=String(d||'').replace(/\s*\((?:ס['׳]|סעיף)[^)]*\)/g,'').replace(/\s*[.…]+\s*$/,'').replace(/\s+/g,' ').trim(); return d; }
+function qCut(d,n){ d=qClean(d); if(d.length<=n)return d; var c=d.slice(0,n), k=Math.max(c.lastIndexOf(', '),c.lastIndexOf(' — '),c.lastIndexOf('; '),c.lastIndexOf('. ')); return (k>n*.55?c.slice(0,k):c.slice(0,c.lastIndexOf(' '))).replace(/[,;—\s]+$/,''); }
+function qShuf(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)), t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function qNear(arr,key,len,n){ return arr.slice().sort(function(a,b){ return Math.abs(key(a).length-len)-Math.abs(key(b).length-len); }).slice(0,n); }
+function betterQ(m){ var a=m.a; if(!a||a.q9||!a.terms||a.terms.length<4)return false; var T=a.terms, Q=[], tops=a.topics||[];
+  T.forEach(function(tt){ var ti=0; tops.forEach(function(x,i){ if((x.terms||[]).some(function(y){return y.t===tt.t;}))ti=i; });
+    var d=qCut(tt.d,200); if(d.length<20)return;
+    var others=T.filter(function(x){return x.t!==tt.t&&qCut(x.d,200).length>=20;}); if(others.length<3)return;
+    var dis=qNear(qShuf(others),function(x){return qCut(x.d,200);},d.length,3).map(function(x){return qCut(x.d,200);});
+    var o=qShuf([d].concat(dis)); Q.push({ty:'mc',k:'הגדרה',ti:ti,q:'מהו "'+tt.t+'"?',o:o,c:o.indexOf(d),ex:tt.src||tt.d});
+    var nm=qShuf(others).slice(0,3).map(function(x){return x.t;}), o2=qShuf([tt.t].concat(nm)); Q.push({ty:'mc',k:'איזה מונח',ti:ti,q:'איזה מונח מתאים להגדרה: "'+qCut(tt.d,170)+'"?',o:o2,c:o2.indexOf(tt.t),ex:tt.src||tt.d}); });
+  (a.q||[]).forEach(function(q){ if(q.ty==='mc')return; if(q.ty==='tf'||q.k==='השלמה'){ if((q.o||[]).some(function(x){return /…/.test(x);}))return; } Q.push(q); });
+  a.q=qShuf(Q.filter(function(q){return q.ty==='mc';})).concat(Q.filter(function(q){return q.ty!=='mc';})).slice(0,80); a.q9=1; return true; }
+function upgradeQ(){ try{ var L=load(), ch=false; L.forEach(function(m){ if(betterQ(m))ch=true; }); if(ch)localStorage.setItem(KEY(),JSON.stringify(L)); }catch(e){} }
+function tidyBrain(){ document.querySelectorAll('.br7-tabs button').forEach(function(b){ if(b.textContent.trim()==='שאל את החומר'){ b.textContent='חיפוש בחומר'; } });
+  document.querySelectorAll('.br6-askh b').forEach(function(b){ if(b.textContent.trim()==='שאל את החומר')b.textContent='חיפוש בחומר'; });
+  document.querySelectorAll('.br6-mode').forEach(function(d){ var t=(d.querySelector('b')||{}).textContent||''; if(t==='כרטיסיות מונחים'||t==='משחק התאמה')d.style.display='none'; }); }
+function toolsHtml(m){ return '<div class="pk9b-card"><div class="pk9b-row"><div><div class="pk9-k">המוח שלי · כלים חכמים</div><h3>מה נעשה עם "'+E(m.name)+'"?</h3></div><span class="mut">נבנה מתוך החומר שלך, בלי שרת, ונשאר רק אצלך</span></div>'+statsHtml(m)+'<div class="pk9b-tools">'
+  +TOOLS.map(function(t,k){return '<button onclick="PK9B.set(\''+t[0]+'\')"><span class="ic">'+t[3]+'</span><b>'+t[1]+''+'</b><em>'+t[2]+'</em></button>';}).join('')+'</div></div>'; }
 B.set=function(t){ if(t!=='listen'&&B.speaking){ B.speaking=false; try{speechSynthesis.cancel();}catch(e){} } B.tab=t; B.paint(); try{document.querySelector('.br7-tabs').scrollIntoView({block:'nearest'});}catch(e){} };
 B.paint=function(){ var host=document.querySelector('.br6.br7'); var hero=host&&host.querySelector('.br7-mhero'); if(!hero)return; var m=mat(); if(!m)return;
   var tabs=hero.querySelector('.br7-tabs'); if(tabs){ tabs.querySelectorAll('button').forEach(function(b){ if(b.dataset.pk9)b.classList.toggle('on',!!B.tab); else if(B.tab)b.classList.remove('on'); }); }
@@ -41247,7 +41268,7 @@ B.paint=function(){ var host=document.querySelector('.br6.br7'); var hero=host&&
   var t=B.tab, tl=TOOLS.find(function(x){return x[0]===t;});
   var inner=t==='tools'?toolsHtml(m):t==='map'?mapHtml(m):t==='gloss'?glossHtml(m):t==='listen'?listenHtml(m):t==='sheet'?sheetHtml(m):t==='gaps'?gapsHtml(m):t==='levels'?levelsHtml(m):t==='cmp'?cmpHtml(m):t==='open'?openHtml(m):t==='cards'?cardsHtml(m):'';
   box.innerHTML=(t!=='tools'?'<a class="pk9b-back" onclick="PK9B.set(\'tools\')">→ כל הכלים החכמים</a>':'')+inner; };
-PK9.hooks.push(function(){ if(typeof STATE==='undefined'||typeof BR6==='undefined')return; var host=document.querySelector('.br6.br7'); if(!host)return;
+PK9.hooks.push(function(){ if(typeof STATE==='undefined'||typeof BR6==='undefined')return; var host=document.querySelector('.br6.br7'); if(!host)return; upgradeQ(); tidyBrain();
   var hero=host.querySelector('.br7-mhero');
   if(hero){ var tabs=hero.querySelector('.br7-tabs'); if(tabs&&!tabs.querySelector('[data-pk9]')){ var b=document.createElement('button'); b.dataset.pk9='tools'; b.className='pk9b-tt'; b.innerHTML='✦ כלים חכמים<i class="pk9b-new">חדש</i>'; b.onclick=function(){ B.set('tools'); }; tabs.insertBefore(b,tabs.children[1]||null); }
     if(B.tab)B.paint(); return; }
@@ -41821,6 +41842,12 @@ body.pk4 #content .cl6 .cl6-s input,body #content .cl6 .cl6-s input{border:0!imp
 .pkr-i .ring{width:84px;height:84px;border-radius:50%;display:grid;place-items:center}
 .pkr-i .ring i{font-style:normal;background:#fff;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:19px;color:#5B1226}
 .pkr-i b{font-size:14px;color:#2a1a14;margin-top:4px}.pkr-i small{font-size:12px;color:#7a6a58}
+
+.pk9b-stats{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:4px 0 14px;padding:10px 12px;background:rgba(184,145,60,.08);border:1px solid rgba(184,145,60,.25);border-radius:12px}
+.pk9b-stats>div{display:flex;align-items:baseline;gap:6px;padding:0 10px;border-inline-end:1px solid rgba(184,145,60,.3)}
+.pk9b-stats>div b{font-size:20px;color:#5a1a28}
+.pk9b-stats>div span{font-size:12px;color:#7a6a5a}
+.pk9b-stats p{margin:0;font-size:12px;color:#7a6a5a;flex:1;min-width:200px}
 </style><script id="pk9-clean">/* ניקוי מסכים (שכבה נוספת): הסרת "מה חדש" ותגיות "חדש"; "מצב עורך" עובר להגדרות (מנהל בלבד) */
 (function(){
  function rm(){ var f=document.getElementById('pk9Fab'); if(f)f.remove(); }
