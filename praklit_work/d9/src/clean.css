@@ -33,3 +33,11 @@
 .st7{display:flex;flex-direction:column;gap:14px}.st7>*{margin-top:0!important;margin-bottom:0!important}
 .st7 .st7-card>button{align-self:flex-start}
 .pkd-slim{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;border-radius:12px;background:#FBF6EA;border:1px solid #E3D6B4;font-size:13px;color:#5b4a3a}.pkd-slim button{border:1px solid #C9A24A;background:#fff;color:#5B1226;border-radius:999px;padding:6px 14px;font:700 12px inherit;font-family:inherit;cursor:pointer;white-space:nowrap}
+
+.cl6-k,.cl6-cc,.cl6-ai{display:none!important}
+.pk-lawsel{border:1px solid #E3D6B4;background:#fff;border-radius:12px;padding:9px 12px;font:600 13px inherit;font-family:inherit;color:#5B1226;min-width:170px}
+.gl6-act.pk-lawact{margin:0 0 12px}
+.cl6-f{flex-wrap:wrap!important;gap:8px!important}.cl6-f .cl6-s{flex:1 1 100%!important;min-width:0!important;max-width:none!important}
+.cl6-s input{border:0!important;background:transparent!important;box-shadow:none!important;outline:0}
+.ix6-c{position:relative}.pk-ixprep{position:absolute;top:10px;left:44px;font-style:normal;font-size:11px;color:#8A6A17;background:#F3E9CB;border-radius:6px;padding:2px 8px}
+body.pk4 #content .cl6 .cl6-s input,body #content .cl6 .cl6-s input{border:0!important;background:transparent!important;box-shadow:none!important;outline:0!important;border-radius:0!important}

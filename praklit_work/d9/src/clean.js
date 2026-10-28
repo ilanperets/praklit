@@ -73,7 +73,32 @@
     Object.keys(have).forEach(function(id){ var m=have[id].querySelector('.mono'),sj=SUBJECTS.find(function(x){return x.id===id;}); if(m&&sj&&ICONS[sj.ic]){ m.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px">'+ICONS[sj.ic]+'</svg>'; } }); }
   }catch(e){}
  }
- var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();books();dash();},120); }).observe(document.documentElement,{childList:true,subtree:true});
+
+ /* פסיקה וחוק: סינון נקי, בלי תג "חלקי", בלי הערות-ריקות */
+ function law(){
+  try{
+   document.querySelectorAll('.cl6-s input').forEach(function(i){['border','background','box-shadow','outline'].forEach(function(p){i.style.setProperty(p,p==='background'?'transparent':(p==='border'||p==='outline'?'0':'none'),'important');});i.style.setProperty('border-radius','0','important');});
+   var f=document.querySelector('.cl6-f'); if(!f)return;
+   if(!document.getElementById('pkLawCourse')){
+    var chips=[].slice.call(document.querySelectorAll('.cl6-cc button')); if(chips.length){
+     var sel=document.createElement('select'); sel.id='pkLawCourse'; sel.className='pk-lawsel';
+     chips.forEach(function(b){ var m=(b.getAttribute('onclick')||'').match(/cl6C\('([^']*)'\)/); var nm=b.textContent.replace(/\d+\s*$/,'').trim()||'הכל'; var n=(b.querySelector('b')||{}).textContent||''; var o=document.createElement('option'); o.value=m?m[1]:''; o.textContent=nm+(n?' ('+n+')':''); if(b.classList.contains('on'))o.selected=true; sel.appendChild(o); });
+     sel.onchange=function(){ cl6C(sel.value); };
+     var first=f.querySelector('select'); f.insertBefore(sel,first||null); } }
+   var on=document.querySelector('.cl6-cc button.on'),sl=document.getElementById('pkLawCourse'); if(on&&sl){var m2=(on.getAttribute('onclick')||'').match(/cl6C\('([^']*)'\)/); if(m2)sl.value=m2[1];}
+   var ap=document.querySelector('.gl6-act'); if(ap&&!ap.classList.contains('pk-lawact')){ap.classList.add('pk-lawact'); if(f.parentNode)f.parentNode.insertBefore(ap,f);}
+   document.querySelectorAll('.cl6-t').forEach(function(b){if(b.textContent.trim()==='רק מלאים')b.textContent='תקצירים מלאים בלבד';});
+   document.querySelectorAll('#cl6Res .pa').forEach(function(e){e.remove();});
+   document.querySelectorAll('#cl6Res .fu').forEach(function(e){if(e.textContent.trim()==='מלא')e.textContent='תקציר מלא';});
+   document.querySelectorAll('#cl6Res .cl6-c').forEach(function(c){var b=c.querySelector('.hd b'); if(b&&b.textContent.trim()==='הערה')c.style.display='none';});
+  }catch(e){}
+ }
+
+ function lawIdx(){
+  try{ document.querySelectorAll('.ix6-c').forEach(function(c){ if(c.getAttribute('data-pkx'))return; c.setAttribute('data-pkx','1');
+    var m=c.textContent.match(/(\d+)\s*סעיפים/); if(m&&+m[1]<3){ var h=c.querySelector('div,span'); var t=document.createElement('em'); t.className='pk-ixprep'; t.textContent='בהכנה'; c.insertBefore(t,c.firstChild); } }); }catch(e){}
+ }
+ var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();books();dash();law();lawIdx();},120); }).observe(document.documentElement,{childList:true,subtree:true});
  function fixLessons(){ try{ SUBJECTS.forEach(function(s){ var t=LESSON_TOPICS&&LESSON_TOPICS[s.id]; if(t&&t.length&&s.lessons>t.length)s.lessons=t.length; }); }catch(e){} }
  var _R=window.render; if(typeof _R==='function'&&!_R.__pkc){ window.render=function(){ fixLessons(); return _R.apply(this,arguments); }; window.render.__pkc=1; }
  fixLessons(); badges(); rm();
