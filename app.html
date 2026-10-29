@@ -41861,6 +41861,9 @@ body.pk4 #content .cl6 .cl6-s input,body #content .cl6 .cl6-s input{border:0!imp
 
 .pkn-sec{margin-top:10px;background:rgba(184,145,60,.14)!important;border:1px solid rgba(184,145,60,.5)!important;color:#6b4d12!important}
 .pkn-flash{animation:pknf 3.5s ease}@keyframes pknf{0%,60%{background:rgba(184,145,60,.35)}100%{background:transparent}}
+
+.pkc-meta{display:flex;justify-content:center;align-items:center;gap:6px;margin-top:8px;font:500 12px var(--pk-ui);color:#7a6a5a}
+.pkc-p{color:#8a6a24}
 </style><script id="pk9-clean">/* ניקוי מסכים (שכבה נוספת): הסרת "מה חדש" ותגיות "חדש"; "מצב עורך" עובר להגדרות (מנהל בלבד) */
 (function(){
  function rm(){ var f=document.getElementById('pk9Fab'); if(f)f.remove(); }
@@ -41996,7 +41999,7 @@ body.pk4 #content .cl6 .cl6-s input,body #content .cl6 .cl6-s input{border:0!imp
    var cc=v.querySelector('.st7-cg'); var target=cc&&cc.closest('.st7-card'); if(target)target.parentNode.insertBefore(card,target); else v.appendChild(card);
   }catch(e){}
  }
- var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();books();dash();law();lawIdx();today();ready();polish();lockPod();secLinks();},120); }).observe(document.documentElement,{childList:true,subtree:true});
+ var t; new MutationObserver(function(){ clearTimeout(t); t=setTimeout(function(){rm();badges();addSec();books();dash();law();lawIdx();today();ready();polish();lockPod();secLinks();catalog();},120); }).observe(document.documentElement,{childList:true,subtree:true});
 
  /* ליטוש מסכים: חזרה יומית, מחברת ריקה, כותרת כפולה בכלים, יומן, ספרייה */
  var THIN=['דיני בנקאות','קניין רוחני','משפט בינלאומי','ירושה ועיזבון','הוצאה לפועל','משפט מסחרי','אתיקה מקצועית'];
@@ -42034,6 +42037,14 @@ body.pk4 #content .cl6 .cl6-s input,body #content .cl6 .cl6-s input{border:0!imp
  function secLinks(){ try{ if(typeof EX==='undefined'||!EX||!EX.questions)return;
    var fb=document.querySelector('.pr-fb.no'); if(fb&&!fb.querySelector('.pkn-sec')){ var q=EX.questions[EX.i]; if(q&&q.subj!=null&&q.idx!=null){ var a=document.createElement('button'); a.className='btn sm pkn-sec'; a.textContent='📖 חזרה לחומר בשיעור'; a.onclick=function(){ pkGoSec(q.subj,q.idx,q.q+' '+q.options[q.correct]+' '+(q.explain||'')); }; fb.appendChild(a); } }
    document.querySelectorAll('.ex-rev').forEach(function(r,i){ var q=EX.questions[i]; if(!q||r.querySelector('.pkn-sec')||!r.querySelector('.ans.no'))return; if(q.subj==null||q.idx==null)return; var a=document.createElement('button'); a.className='btn sm pkn-sec'; a.textContent='📖 חזרה לחומר בשיעור'; a.onclick=function(){ pkGoSec(q.subj,q.idx,q.q+' '+q.options[q.correct]+' '+(q.explain||'')); }; r.appendChild(a); }); }catch(e){} }
+
+ /* קטלוג הקורסים כספרים (במקום רשימה שטוחה) */
+ function catalog(){ var L=document.querySelector('.l4 .l4-list'); var on=document.querySelector('.l4-tabs .on'); if(!L||!on||on.textContent.indexOf('כל הקטלוג')<0)return; if(document.querySelector('.l4 .pkc-grid')||typeof pkCoverHtml!=='function')return;
+  var g=document.createElement('div'); g.className='l4-grid pkc-grid';
+  g.innerHTML=SUBJECTS.map(function(s){ var p=0; try{p=subjProgress(s);}catch(e){} var thin=THIN.indexOf(s.name)>=0; var locked=false; try{ locked=typeof courseLocked==='function'&&myCourseIds()!==null&&courseLocked(s.id); }catch(e){}
+   var h=pkCoverHtml(s); if(locked)h=h.replace('onclick="openCourse(\''+s.id+'\')"','onclick="go(\'workspace\')"');
+   return '<div class="l4-it pkc-it" data-nm="'+s.name.replace(/"/g,'')+'">'+h+'<div class="pkc-meta">'+(thin?'<em class="pkn-prep">בהכנה</em>':'<span class="pkc-p">'+(p?'התקדמות '+p+'%':'מוכן להתחלה')+'</span>')+'</div></div>'; }).join('');
+  L.style.display='none'; L.parentNode.insertBefore(g,L); }
  function fixLessons(){ try{ SUBJECTS.forEach(function(s){ var t=LESSON_TOPICS&&LESSON_TOPICS[s.id]; if(t&&t.length&&s.lessons>t.length)s.lessons=t.length; }); }catch(e){} }
  var _R=window.render; if(typeof _R==='function'&&!_R.__pkc){ window.render=function(){ fixLessons(); return _R.apply(this,arguments); }; window.render.__pkc=1; }
  fixLessons(); badges(); rm();
