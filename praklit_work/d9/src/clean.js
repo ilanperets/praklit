@@ -16,7 +16,7 @@
  }
 
  /* חוברות להורדה: סיכום מלא, מרתון, שאלות אמריקאיות — אותו מקום ואותו עיצוב בכל קורס */
- var BOOK_READY={};
+ var BOOK_FILES={family:{summary:'family_summary',marathon:'family_marathon',questions:'family_questions'}}; var BOOK_READY={family:1};
  var IC={summary:'<path d="M6 3h9l3 3v15H6z"/><path d="M9 11h6M9 15h6M9 7h3"/>',marathon:'<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',questions:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/>'};
  var BOOKS=[['summary','סיכום מלא'],['marathon','מרתון'],['questions','שאלות אמריקאיות']];
  function books(){
@@ -26,8 +26,8 @@
    var chip=document.createElement('button'); chip.id='pkBooksChip'; chip.className='pk-bkchip'+(ready?'':' off');
    chip.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 3v12m0 0-4-4m4 4 4-4M5 19h14"/></svg>חוברות';
    var pop=document.createElement('div'); pop.className='pk-bkpop';
-   pop.innerHTML=BOOKS.map(function(b){return '<div class="r"><svg viewBox="0 0 24 24">'+IC[b[0]]+'</svg><span>'+b[1]+'</span>'+(ready?'<i><button>PDF</button><button>Word</button></i>':'<em>בהכנה</em>')+'</div>';}).join('')
-    +(ready?'<div class="th"><button class="on">יוקרתי</button><button>דיני משפחה</button></div>':'<div class="nt">יופיעו כשתוכן הקורס יושלם</div>');
+   pop.innerHTML=BOOKS.map(function(b){return '<div class="r"><svg viewBox="0 0 24 24">'+IC[b[0]]+'</svg><span>'+b[1]+'</span>'+(ready?'<i><a href="books/'+(BOOK_FILES[id]||{})[b[0]]+'.pdf" download>PDF</a><a href="books/'+(BOOK_FILES[id]||{})[b[0]]+'.docx" download>Word</a></i>':'<em>בהכנה</em>')+'</div>';}).join('')
+    +(ready?'':'<div class="nt">יופיעו כשתוכן הקורס יושלם</div>');
    chip.onclick=function(e){e.stopPropagation();pop.classList.toggle('on');};
    document.addEventListener('click',function(e){if(!pop.contains(e.target))pop.classList.remove('on');});
    var holder=document.createElement('span'); holder.className='pk-bkwrap'; holder.appendChild(chip); holder.appendChild(pop);
