@@ -6,6 +6,20 @@ exec(open(__file__.replace('build_pack.py','parse_family.py'),encoding='utf8').r
 D=sys.argv_[1].rstrip('/')+'/'; OUT=sys.argv_[2]
 chs=parse_summary(D+'family_summary.docx'); qs,keys,expl,qch=parse_questions(D+'family_questions.docx'); ms=parse_marathon(D+'family_marathon.docx')
 errs=check_questions(qs,keys,expl); assert not errs,errs[:5]
+
+# --- תיקוני בדיקה עצמאית (סקירת הסברים) ---
+def _fx(n,field,old,new):
+    for a in qs:
+        if a['n']==n:
+            if field=='q': assert old in a['q'],(n,old); a['q']=a['q'].replace(old,new)
+    if field=='e':
+        assert old in expl[n][1],(n,old); expl[n]=(expl[n][0],expl[n][1].replace(old,new)) if isinstance(expl[n],tuple) else [expl[n][0],expl[n][1].replace(old,new)]
+_fx(16,'e','הוא איתת לפסיקה','הוא אותת לפסיקה')
+_fx(37,'q','דן ויואב, שני יהודים,','דן ויואב, שני גברים יהודים (בני זוג מאותו מין),')
+_fx(93,'e',' (סימן 51) ולירושה',' (סימן 51)')
+_fx(118,'e','דרך לזכור: 60 ימי מהו״ת ועוד 15 ימי ״צינון״. 60 ימים הם התקופה ללא הארכה.','60 ימים הם התקופה ללא הארכה, ועם הארכת המהו״ת ב-15 ימים – 75.')
+_fx(174,'e','לפי ההלכה המגרש את אשתו וחזר ובעלה, הואיל ואשתו הייתה, מניחים שבעל לשם קידושין','מי שגירש את אשתו וחזר ובא עליה – מניחים שבעל לשם קידושין')
+_fx(357,'e',' (הערה: לפי המרצה, ענייני ירושה \'לא נספיק\' בקורס.)','')
 assert len(chs)==13 and len(ms)==13 and set(qch)=={c['n'] for c in chs}
 for c in chs: assert qch[c['n']]==c['title'] or True
 topics=[c['title'] for c in chs]
