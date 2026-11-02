@@ -54,4 +54,5 @@ var _pub=window.PKCPUB; if(_pub) window.PKCPUB=function(){ if((typeof PK_CRS!=='
 })();}catch(e){console.error('fam pack',e);}
 """
 js='<script id="pk7-fam-pack">\n/* ===== קורס דיני משפחה — גרסת החוברות (fam13): 13 פרקים, %d שאלות, %d כרטיסי פסיקה, מרתון מלא. מקור: שלוש חוברות הקורס. ===== */\ntry{(function(){\nvar P=%s;'%(len(qs),sum(len(l['cases']) for l in lessons),json.dumps(P,ensure_ascii=False))+tail+'</script>\n<style id="pk9-fam-css">\n'+open(__file__.replace('build_pack.py','fam.css'),encoding='utf8').read()+'</style>'
+js=js.replace('143/64','143/62')  # אומת: בג"ץ 143/62 פונק-שלזינגר
 open(OUT,'w',encoding='utf8').write(js); print('pack',len(js)//1024,'KB;',len(lessons),'lessons;',len(qs),'questions;',sum(len(l['cases']) for l in lessons),'cases;',len(sheets),'sheets')
