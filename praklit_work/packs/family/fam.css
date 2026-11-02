@@ -1,0 +1,23 @@
+/* תיבות חדשות בשיעורי משפחה */
+#content .pkw-box.def{border-color:#1E4FA3;background:#EEF4FF}#content .pkw-box.def>b:first-child{color:#1E4FA3}
+#content .pkw-box.case{border-color:#6B3FA0;background:#F4EFFF}#content .pkw-box.case>b:first-child{color:#6B3FA0}
+#content .pkw-box.ex{border-color:#0F7B6C;background:#E7F7F7}#content .pkw-box.ex>b:first-child{color:#0F7B6C}
+#content mark{background:#FFF1A8;color:inherit;padding:0 2px;border-radius:3px}
+#content .pkw-box{margin:14px 0}#content .pkw-box p{margin:6px 0}
+/* מרתון משפחה — קריא, מרווח ונוח לאייפד (פעיל רק בקורס זה) */
+.mbox.def{border-color:#1E4FA3;background:#EEF4FF}.mbox.law{border-color:#6B3FA0;background:#F4EFFF}.mbox.ex{border-color:#0F7B6C;background:#E7F7F7}.mbox.key{border-color:#2E6B45;background:#EFF6F1}
+body.pk-fam-m .sheet{background:#fff;border-radius:16px;padding:30px 34px 34px;margin-bottom:26px;box-shadow:0 2px 14px rgba(60,40,20,.08)}
+body.pk-fam-m .sheet.cover{background:inherit;box-shadow:none;padding:0}
+body.pk-fam-m h2.msec{font-size:23px;padding:13px 20px;border-radius:13px;margin-bottom:22px}
+body.pk-fam-m h3.msub{font-size:18px;margin:26px 0 12px;padding-bottom:7px;border-bottom-width:2px}
+body.pk-fam-m .sheet p{font-size:15.5px;line-height:2;margin-bottom:12px}
+body.pk-fam-m .sheet p ul,body.pk-fam-m .mbox ul{margin:8px 0 12px;padding-inline-start:22px}
+body.pk-fam-m .sheet li{font-size:15.5px;line-height:1.95;margin-bottom:6px}
+body.pk-fam-m .mbox{font-size:15px;line-height:2;padding:15px 20px;margin:16px 0;border-radius:13px}
+body.pk-fam-m .mbox b:first-child{font-size:14px;letter-spacing:.2px}
+body.pk-fam-m table.mt{font-size:14.5px;margin:14px auto 20px;border-radius:10px;overflow:hidden}
+body.pk-fam-m .mt th{padding:10px 12px;font-size:14px}
+body.pk-fam-m .mt td{padding:10px 13px;text-align:right;line-height:1.85}
+body.pk-fam-m .toc{font-size:15.5px;line-height:2.5}
+body.pk-fam-m .mblk{margin-bottom:6px}
+@media (max-width:820px){body.pk-fam-m .sheet{padding:20px 16px 24px;border-radius:12px}body.pk-fam-m .sheet p,body.pk-fam-m .sheet li{font-size:15px}body.pk-fam-m table.mt{font-size:13.5px}}
