@@ -10,7 +10,17 @@ QX=json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'qx.js
 def ren(txt,old,new): return re.sub(r'(?<![\d.])%d\.(\d+)(?=[ <])'%old,lambda mm:'%d.%s'%(new,mm.group(1)),txt)
 for pos,m in enumerate(mods):
     old=m.N; new=pos+1
-    m.SUM=[ren(x,old,new) for x in m.SUM]
+    import ext
+    sm=list(m.SUM)
+    if old in ext.EXT:
+        ix=[i for i,x in enumerate(sm) if x.startswith('<h3>') and 'שלד לפתרון' in x]
+        at=ix[0] if ix else len(sm)-1
+        sm=sm[:at]+ext.EXT[old]+sm[at:]
+    cnt=[0]
+    def _h(mm):
+        cnt[0]+=1; return '<h3>%d.%d '%(new,cnt[0])
+    sm=[re.sub(r'^<h3>\d+\.(?:\d+|x) ',_h,x) if x.startswith('<h3>') else x for x in sm]
+    m.SUM=sm
     for b in m.MAR:
         for k in ('t','h'):
             if isinstance(b.get(k),str): b[k]=ren(b[k],old,new)
