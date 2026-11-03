@@ -29,6 +29,37 @@ for m in mods:
         qs.append({'q':q['q'],'o':q['o'],'c':q['c'],'why':why,'e':q['e']})
     cases=[{'n':a,'story':b,'r':c,'facts':''} for a,b,c in m.CASES]
     lessons.append({'n':m.N,'summary':''.join(m.SUM),'qs':qs,'cases':cases}); nq+=len(qs); nc+=len(cases)
+
+from html.parser import HTMLParser
+def autoMar(sumhtml,cases):
+    out=[]; 
+    tokens=re.split(r'(<h3>.*?</h3>|<div class="pkw-box [a-z]+">.*?</div>(?=<|$)|<table>.*?</table>|<ul>.*?</ul>|<ol>.*?</ol>)',sumhtml,flags=re.S)
+    for t in tokens:
+        if not t or not t.strip(): continue
+        if t.startswith('<h3>'): out.append({'k':'h','t':re.sub(r'<[^>]+>','',t),'lv':1})
+        elif t.startswith('<div class="pkw-box'):
+            k=re.match(r'<div class="pkw-box ([a-z]+)">',t).group(1); inner=t[t.index('>')+1:-6]
+            if k in ('ex','case'): continue
+            ttl=re.match(r'<b>(.*?)</b>',inner,flags=re.S); body=re.sub(r'<(?!/?b>|/?mark>)[^>]+>',' ',inner[ttl.end():] if ttl else inner)
+            sents=re.split(r'(?<=[.!?:])\s+',re.sub(r'\s+',' ',body).strip()); cut=''
+            for x in sents:
+                if len(cut.split())>=20: break
+                cut+=(' ' if cut else '')+x
+            out.append({'k':'bx','c':k,'h':('<b>%s</b> '%ttl.group(1) if ttl else '')+cut,'lv':1})
+        elif t.startswith('<table>'):
+            rows=re.findall(r'<tr>(.*?)</tr>',t,flags=re.S); cells=[re.findall(r'<t[hd]>(.*?)</t[hd]>',r,flags=re.S) for r in rows]
+            if cells: out.append({'k':'t','head':cells[0],'rows':cells[1:],'lv':1})
+        else:
+            m1=re.search(r'<p>(.*?)</p>',t,flags=re.S)
+            for pm in re.findall(r'<p>(.*?)</p>',t,flags=re.S):
+                first=re.split(r'(?<=[.!?:])\s',pm,maxsplit=1)[0]
+                pass
+    if cases:
+        out.append({'k':'h','t':'שרשרת פסיקה בפרק','lv':1})
+        out.append({'k':'t','head':['<b>פסק דין</b>','<b>ההלכה</b>'],'rows':[['<b>%s</b>'%a,c] for a,b,c in cases],'lv':1})
+    return out
+for m in mods:
+    m.MAR=list(m.MAR)+autoMar(''.join(m.SUM),m.CASES)
 sheets=[{'id':'cover','cover':True,'pg':1}]
 toc=[['%d · %s'%(m.N,m.TITLE),str(i+3)] for i,m in enumerate(mods)]
 sheets.append({'id':'toc','title':'תוכן עניינים','pg':2,'blocks':[{'k':'toc','items':toc,'lv':1}]})
