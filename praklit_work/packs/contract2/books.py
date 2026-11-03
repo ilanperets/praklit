@@ -1,34 +1,43 @@
 import json,re,html,sys
 P=json.load(open('/tmp/con_P.json',encoding='utf8'))
-CSS="""@page{size:A4;margin:18mm}body{font-family:'Noto Sans Hebrew','David',Arial,sans-serif;direction:rtl;line-height:1.6;font-size:11pt}
-h1{font-size:26pt;text-align:center;margin-top:60mm}h2{color:#1d3a6e;border-bottom:2px solid #1d3a6e;page-break-before:always}h3{color:#1d3a6e}
-.pkw-box,.bx{border:1px solid #bbb;border-right:5px solid #1d3a6e;padding:6px 10px;margin:8px 0;background:#f6f8fc}table{border-collapse:collapse;width:100%}td,th{border:1px solid #999;padding:4px}th{background:#e6ecf7}
-mark{background:#fff3a0}.q{margin:10px 0;page-break-inside:avoid}.e{color:#145a2a}"""
-def wrap(t,body): return '<!doctype html><html lang="he" dir="rtl"><meta charset="utf-8"><title>%s</title><style>%s</style><body>%s</body></html>'%(t,CSS,body)
-cover=lambda t,s:'<h1>%s</h1><p style="text-align:center;font-size:16pt">%s</p>'%(t,s)
+PAL=['#1f4e9a','#0f766e','#6d3fa8','#c0283d','#c0611f','#2e7d4f','#3b4fa8','#a8307d','#a67300','#0e7c99','#b5303a','#5a7d1f','#2c3e73','#7a3b8c','#1d6b5c','#9a4a1f']
+def css(c): return """@page{size:A4;margin:0}body{font-family:'Noto Sans Hebrew','Heebo','Arial',sans-serif;direction:rtl;line-height:1.65;font-size:10.5pt;color:#1b2430;margin:0}
+.cover{page-break-after:always;padding:24mm 16mm}.cb{background:%s;color:#fff;padding:14mm 12mm;border-radius:3px}.cb .k{color:#ffd66b;font-weight:700;font-size:11pt}.cb h1{font-size:40pt;margin:6mm 0 0}.cb h2{color:#ffd66b;font-size:22pt;margin:0 0 6mm;border:0;padding:0;page-break-before:avoid}.cb p{margin:2mm 0}.by{border:1px solid %s;background:#f3f4f6;padding:5mm 7mm;margin-top:10mm;border-radius:3px}.by small{display:block;color:#666}.by b{font-size:22pt;color:%s}
+.toc{page-break-after:always;padding:0 16mm}.toc h1{font-size:26pt;margin:18mm 0 2mm;color:%s}.toc .row{display:flex;flex-direction:row;align-items:stretch;background:#f2f3f5;margin:2.2mm 0;border-radius:2px;direction:rtl}.toc .n{color:#fff;font-weight:700;width:9mm;text-align:center;padding:2mm 0}.toc .t{padding:2mm 3mm;flex:1}
+.ch{padding:0 16mm}.band{color:#fff;padding:5mm 16mm;margin:0 0 6mm;font-size:17pt;font-weight:700;page-break-before:always;break-before:page}.band small{display:block;font-size:9pt;opacity:.9}
+h3{color:%s;border-bottom:1.5px solid %s;padding-bottom:1mm;margin:8mm 0 3mm;font-size:13pt;background:#eef1f8;padding:2mm 3mm}h4{color:%s}
+.pkw-box,.bx{border:1px solid #cfd6e4;border-right:4px solid %s;padding:2.5mm 4mm;margin:3mm 0;background:#f7f9fc;border-radius:3px;font-size:10pt;page-break-inside:avoid}
+table{border-collapse:collapse;width:100%%;margin:3mm 0;font-size:10pt}td,th{border:1px solid #b9c0cf;padding:2mm 3mm;vertical-align:top}th{background:#e6ecf7}tr{page-break-inside:avoid}
+mark{background:#fff0a0}.q{margin:4mm 0;page-break-inside:avoid;border-bottom:1px dotted #bbb;padding-bottom:3mm}.q ol{margin:2mm 0;list-style-type:hebrew}.e{color:#145a2a;background:#eef8f0;padding:2mm 3mm;border-radius:3px}"""%((c,)*8)
+def wrap(t,body,c): return '<!doctype html><html lang="he" dir="rtl"><meta charset="utf-8"><title>%s</title><style>%s</style><body>%s</body></html>'%(t,css(c),body)
+def cover(no,kind,sub,desc,cnt,c): return '<div class="cover"><div class="cb"><div class="k">חוברת %s · %s</div><h1>דיני חוזים</h1><h2>%s</h2><p>%s</p><p style="font-size:9pt;margin-top:8mm">%s</p></div><div class="by"><small>הוכן ונערך ע״י</small><b>אילן פרץ</b></div></div>'%(no,kind,sub,desc,cnt)
+def toc(T,sub,c): return '<div class="toc"><h1>תוכן העניינים</h1><p style="color:#555">%s</p>'%sub+''.join('<div class="row"><div class="n" style="background:%s">%d</div><div class="t">%s</div></div>'%(PAL[i%16],i+1,t) for i,t in enumerate(T))+'</div>'
+def band(i,t): return '<div class="band" style="background:%s"><small>פרק %d</small>%s</div>'%(PAL[i%16],i+1,t)
 H='אבגד'
 L=P['lessons']; T=P['topics']
+nq=sum(len(l['qs']) for l in L); nc=sum(len(l['cases']) for l in L)
 # סיכום
-b=cover('דיני חוזים','חוברת סיכום')+'<h2>תוכן עניינים</h2><ol>'+''.join('<li>%s</li>'%t for t in T)+'</ol>'
-for i,l in enumerate(L): b+='<h2>פרק %d: %s</h2>'%(i+1,T[i])+l['summary']
-open('/tmp/b_summary.html','w',encoding='utf8').write(wrap('דיני חוזים — סיכום',b))
-# שאלות
-b=cover('דיני חוזים','חוברת שאלות ותשובות מנומקות')
-for i,l in enumerate(L):
-    b+='<h2>פרק %d: %s</h2>'%(i+1,T[i])
-    for j,q in enumerate(l['qs']):
-        b+='<div class="q"><b>%d. %s</b><ol type="א">%s</ol><div class="e">התשובה הנכונה: %s. %s</div></div>'%(j+1,q['q'],''.join('<li>%s</li>'%o for o in q['o']),H[q['c']],q['e'])
-    if l['cases']:
-        b+='<h3>פסיקה בפרק</h3>'+''.join('<div class="bx"><b>%s</b><br>%s<br><i>הלכה:</i> %s</div>'%(c['n'],c['story'],c['r']) for c in l['cases'])
-open('/tmp/b_questions.html','w',encoding='utf8').write(wrap('דיני חוזים — שאלות',b))
+C='#1f4e9a'; b=cover('1','סיכום מלא','הסיכום המקיף','מושגים, סעיפי חוק, פסקי דין, טבלאות השוואה וטיפים למבחן','%d פרקים'%len(L),C)+toc(T,'סיכום לפי פרקים',C)
+for i,l in enumerate(L): b+=band(i,T[i])+'<div class="ch">'+l['summary']+'</div>'
+open('/tmp/b_summary.html','w',encoding='utf8').write(wrap('דיני חוזים — סיכום',b,C))
 # מרתון
-b=cover('דיני חוזים','מרתון — תמצית מהירה למבחן')
-for s in P['sheets']:
-    if s.get('cover') or s['id']=='toc': continue
-    b+='<h2>%s. %s</h2>'%(s['num'],s['title'])
-    for k in s['blocks']:
+C='#b5194a'; b=cover('2','מרתון','מרתון למבחן','טבלאות, שרשראות פסיקה, עצי החלטה ורשימות "חייבים לזכור"','%d פרקים'%len(L),C)+toc(T,'מרתון לפי פרקים',C)
+for i,s_ in enumerate([x for x in P['sheets'] if not x.get('cover') and x['id']!='toc']):
+    b+=band(i,s_['title'])+'<div class="ch">'
+    for k in s_['blocks']:
         if k['k']=='h': b+='<h3>%s</h3>'%k['t']
         elif k['k']=='p': b+=k['h']
         elif k['k']=='bx': b+='<div class="bx">%s</div>'%k['h']
         elif k['k']=='t': b+='<table><tr>'+''.join('<th>%s</th>'%h for h in k['head'])+'</tr>'+''.join('<tr>'+''.join('<td>%s</td>'%c for c in r)+'</tr>' for r in k['rows'])+'</table>'
-open('/tmp/b_marathon.html','w',encoding='utf8').write(wrap('דיני חוזים — מרתון',b))
+    b+='</div>'
+open('/tmp/b_marathon.html','w',encoding='utf8').write(wrap('דיני חוזים — מרתון',b,C))
+# שאלות
+C='#0f766e'; b=cover('3','תרגול','שאלות אמריקאיות פתורות','שאלות בסגנון מבחן מתחילת החומר ועד סופו, עם פתרון והסבר מלא לכל שאלה, ופסיקה לכל פרק','סה״כ %d שאלות פתורות · %d פסקי דין'%(nq,nc),C)+toc(T,'שאלות אמריקאיות לפי פרקים · סה״כ %d שאלות'%nq,C)
+for i,l in enumerate(L):
+    b+=band(i,T[i])+'<div class="ch">'
+    for j,q in enumerate(l['qs']):
+        b+='<div class="q"><b>%d. %s</b><ol type="א">%s</ol><div class="e"><b>התשובה הנכונה: %s.</b> %s</div></div>'%(j+1,q['q'],''.join('<li>%s</li>'%o for o in q['o']),H[q['c']],q['e'])
+    if l['cases']:
+        b+='<h3>פסיקה בפרק</h3>'+''.join('<div class="bx"><b>%s</b><br>%s<br><i>הלכה:</i> %s</div>'%(c['n'],c['story'],c['r']) for c in l['cases'])
+    b+='</div>'
+open('/tmp/b_questions.html','w',encoding='utf8').write(wrap('דיני חוזים — שאלות',b,C))
