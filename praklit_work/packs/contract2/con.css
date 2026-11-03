@@ -1,0 +1,66 @@
+/* תיבות חדשות בשיעורי משפחה */
+#content .pkw-box.def{border-color:#1E4FA3;background:#EEF4FF}#content .pkw-box.def>b:first-child{color:#1E4FA3}
+#content .pkw-box.case{border-color:#6B3FA0;background:#F4EFFF}#content .pkw-box.case>b:first-child{color:#6B3FA0}
+#content .pkw-box.ex{border-color:#0F7B6C;background:#E7F7F7}#content .pkw-box.ex>b:first-child{color:#0F7B6C}
+#content mark{background:#FFF1A8;color:inherit;padding:0 2px;border-radius:3px}
+#content .pkw-box{margin:14px 0}#content .pkw-box p{margin:6px 0}
+/* מרתון משפחה — קריא, מרווח ונוח לאייפד (פעיל רק בקורס זה) */
+.mbox.def{border-color:#1E4FA3;background:#EEF4FF}.mbox.law{border-color:#6B3FA0;background:#F4EFFF}.mbox.ex{border-color:#0F7B6C;background:#E7F7F7}.mbox.key{border-color:#2E6B45;background:#EFF6F1}
+body.pk-con-m .sheet{background:#fff;border-radius:16px;padding:30px 34px 34px;margin-bottom:26px;box-shadow:0 2px 14px rgba(60,40,20,.08)}
+body.pk-con-m .sheet.cover{background:inherit;box-shadow:none;padding:0}
+body.pk-con-m h2.msec{font-size:23px;padding:13px 20px;border-radius:13px;margin-bottom:22px}
+body.pk-con-m h3.msub{font-size:18px;margin:26px 0 12px;padding-bottom:7px;border-bottom-width:2px}
+body.pk-con-m .sheet p{font-size:15.5px;line-height:2;margin-bottom:12px}
+body.pk-con-m .sheet p ul,body.pk-con-m .mbox ul{margin:8px 0 12px;padding-inline-start:22px}
+body.pk-con-m .sheet li{font-size:15.5px;line-height:1.95;margin-bottom:6px}
+body.pk-con-m .mbox{font-size:15px;line-height:2;padding:15px 20px;margin:16px 0;border-radius:13px}
+body.pk-con-m .mbox b:first-child{font-size:14px;letter-spacing:.2px}
+body.pk-con-m table.mt{font-size:14.5px;margin:14px auto 20px;border-radius:10px;overflow:hidden}
+body.pk-con-m .mt th{padding:10px 12px;font-size:14px}
+body.pk-con-m .mt td{padding:10px 13px;text-align:right;line-height:1.85}
+body.pk-con-m .toc{font-size:15.5px;line-height:2.5}
+body.pk-con-m .mblk{margin-bottom:6px}
+@media (max-width:820px){body.pk-con-m .sheet{padding:20px 16px 24px;border-radius:12px}body.pk-con-m .sheet p,body.pk-con-m .sheet li{font-size:15px}body.pk-con-m table.mt{font-size:13.5px}}
+/* פלטה אחידה עם המערכת (בורדו · זהב · שמנת) + טבלאות קומפקטיות — מרתון משפחה בלבד */
+body.pk-con-m h2.msec{background:linear-gradient(140deg,#6A1830,#45101F);color:#F6E7B8}
+body.pk-con-m h2.msec .n{background:rgba(246,231,184,.18);color:#F6E7B8}
+body.pk-con-m h3.msub{color:#6A1830;border-bottom-color:rgba(184,145,60,.55)}
+body.pk-con-m .sheet p b,body.pk-con-m .sheet li b{color:#5B1226}
+body.pk-con-m table.mt{table-layout:auto;width:100%;border-collapse:separate;border-spacing:0;font-size:14px;margin:12px 0 18px;border:1px solid #E6D6AE;border-radius:12px;overflow:hidden}
+body.pk-con-m .mt th{width:auto!important;background:linear-gradient(180deg,#6A1830,#511325);color:#F6E7B8;border:0;border-left:1px solid rgba(246,231,184,.18);padding:8px 12px;font-size:13.5px;text-align:right;white-space:normal}
+body.pk-con-m .mt td{width:auto;border:0;border-top:1px solid #EEE2C2;border-left:1px solid #F1E8CF;padding:7px 12px;line-height:1.7;background:#fff;color:#2a1810;vertical-align:top}
+body.pk-con-m .mt tr:nth-child(even) td{background:#FBF6EA}
+body.pk-con-m .mt td:first-child,body.pk-con-m .mt th:first-child{width:1%!important;white-space:nowrap;font-weight:700;color:#5B1226;text-align:center}
+body.pk-con-m .mt td:first-child:not(:empty){min-width:44px}
+body.pk-con-m .mt td mark{background:#FFE9A3}
+body.pk-con-m .mbox.tip{background:#FBF1D9;border-color:#B8913C;border-inline-start:5px solid #B8913C;color:#4a3410}
+body.pk-con-m .mbox.warn{background:#FBEDEE;border-color:#B04458;border-inline-start:5px solid #8A2E3A;color:#5a1a24}
+body.pk-con-m .mbox.case,body.pk-con-m .mbox.law{background:#F6F0FA;border-color:#8A5BA8;border-inline-start:5px solid #6B3FA0;color:#352046}
+body.pk-con-m .mbox.def{background:#EEF2FA;border-color:#5B79B8;border-inline-start:5px solid #1E4FA3;color:#1b2f57}
+body.pk-con-m .mbox.key{background:#EFF6F1;border-color:#4a8a62;border-inline-start:5px solid #2E6B45;color:#1d3d2a}
+body.pk-con-m .mbox.ex{background:#E9F6F4;border-color:#3b9a8c;border-inline-start:5px solid #0F7B6C;color:#0d3a34}
+body.pk-con-m .toc .ti .dots{border-bottom-color:#D8C48E}
+body.pk-con-m .mt th{background:linear-gradient(180deg,#6A1830,#511325)!important;color:#F6E7B8!important;border-color:rgba(246,231,184,.18)!important}
+body.pk-con-m .mt td+td,body.pk-con-m .mt th+th{min-width:96px}
+body.pk-con-m .mt tr:nth-child(even) td{background:#FBF6EA!important}
+body.pk-con-m .mt td{background-clip:padding-box}
+
+/* specificity over #content table th */
+body.pk-con-m #content table.mt{table-layout:auto;width:100%;border-collapse:separate;border-spacing:0;font-size:14px;margin:12px 0 18px;border:1px solid #E6D6AE;border-radius:12px;overflow:hidden}
+body.pk-con-m #content .mt th{width:auto!important;background:linear-gradient(180deg,#6A1830,#511325)!important;color:#F6E7B8;border:0;border-left:1px solid rgba(246,231,184,.18);padding:8px 12px;font-size:13.5px;text-align:right;white-space:normal}
+body.pk-con-m #content .mt td{width:auto;border:0;border-top:1px solid #EEE2C2;border-left:1px solid #F1E8CF;padding:7px 12px;line-height:1.7;background:#fff;color:#2a1810;vertical-align:top}
+body.pk-con-m #content .mt tr:nth-child(even) td{background:#FBF6EA}
+body.pk-con-m #content .mt td:first-child,body.pk-con-m #content .mt th:first-child{width:1%!important;white-space:nowrap;font-weight:700;color:#5B1226;text-align:center}
+body.pk-con-m #content .mt td:first-child:not(:empty){min-width:44px}
+body.pk-con-m #content .mt td mark{background:#FFE9A3}
+body.pk-con-m #content .mbox.tip{background:#FBF1D9;border-color:#B8913C;border-inline-start:5px solid #B8913C;color:#4a3410}
+body.pk-con-m #content .mbox.warn{background:#FBEDEE;border-color:#B04458;border-inline-start:5px solid #8A2E3A;color:#5a1a24}
+body.pk-con-m #content .mbox.case,body.pk-con-m #content .mbox.law{background:#F6F0FA;border-color:#8A5BA8;border-inline-start:5px solid #6B3FA0;color:#352046}
+body.pk-con-m #content .mbox.def{background:#EEF2FA;border-color:#5B79B8;border-inline-start:5px solid #1E4FA3;color:#1b2f57}
+body.pk-con-m #content .mbox.key{background:#EFF6F1;border-color:#4a8a62;border-inline-start:5px solid #2E6B45;color:#1d3d2a}
+body.pk-con-m #content .mbox.ex{background:#E9F6F4;border-color:#3b9a8c;border-inline-start:5px solid #0F7B6C;color:#0d3a34}
+body.pk-con-m #content .toc .ti .dots{border-bottom-color:#D8C48E}
+body.pk-con-m #content .mt th{background:linear-gradient(180deg,#6A1830,#511325)!important;color:#F6E7B8!important;border-color:rgba(246,231,184,.18)!important}
+body.pk-con-m #content .mt td+td,body.pk-con-m #content .mt th+th{min-width:96px}
+body.pk-con-m #content .mt tr:nth-child(even) td{background:#FBF6EA!important}
+body.pk-con-m #content .mt td{background-clip:padding-box}

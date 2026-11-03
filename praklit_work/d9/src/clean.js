@@ -16,7 +16,7 @@
  }
 
  /* חוברות להורדה: סיכום מלא, מרתון, שאלות אמריקאיות — אותו מקום ואותו עיצוב בכל קורס */
- var BOOK_FILES={family:{summary:'family_summary',marathon:'family_marathon',questions:'family_questions'}}; var BOOK_READY={family:1};
+ var BOOK_FILES={family:{summary:'family_summary',marathon:'family_marathon',questions:'family_questions'},contract:{summary:'contract_summary',marathon:'contract_marathon',questions:'contract_questions'}}; var BOOK_READY={family:1,contract:1};
  var IC={summary:'<path d="M6 3h9l3 3v15H6z"/><path d="M9 11h6M9 15h6M9 7h3"/>',marathon:'<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',questions:'<circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/>'};
  var BOOKS=[['summary','סיכום מלא'],['marathon','מרתון'],['questions','שאלות אמריקאיות']];
  function books(){
