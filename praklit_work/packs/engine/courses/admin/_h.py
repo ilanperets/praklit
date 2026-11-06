@@ -20,3 +20,11 @@ def mkqs(n,E,fix=None,new=()):
         q=dict(q); q.update(fix.get(i,{})); q['e']=E[i]; assert len(q['e'])>=120,(n,i,len(q['e'])); out.append(_shuf(q))
     for x in new: assert len(x['e'])>=120,(n,x['q'][:30],len(x['e'])); out.append(x)
     return out
+
+def rep(lst,pairs):
+    """החלפות טקסט על רשימת מחרוזות (תיקוני אימות מעל conv/)."""
+    out=[]
+    for s in lst:
+        for a,b in pairs: s=s.replace(a,b)
+        out.append(s)
+    return out
