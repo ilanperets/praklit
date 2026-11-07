@@ -28180,7 +28180,7 @@ window.pkToggleTheme=function(){ try{localStorage.setItem('pkTheme',getTheme()==
 applyTheme();
 
 function pkModeKey(){ var u=(typeof currentUser==='function')?currentUser():null; return 'pkMode'+(u?'_'+u.id:''); }
-function pkCanFirm(){ var u=(typeof currentUser==='function')?currentUser():null; if(!u)return false; return u.role==='admin'||u.persona==='lawyer'||u.persona==='intern'; }
+function pkCanFirm(){ var u=(typeof currentUser==='function')?currentUser():null; if(!u)return false; return u.role==='admin'; }
 window.pkCanFirm=pkCanFirm;
 function getMode(){ try{ if(!pkCanFirm())return 'study'; var u=currentUser(); var v=localStorage.getItem(pkModeKey()); return v||(u&&u.persona==='lawyer'?'firm':'study'); }catch(e){return 'study';} }
 window.pkGetMode=getMode;
